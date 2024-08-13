@@ -10,11 +10,20 @@
   },
   "dependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
+    "axios": "^1.7.3",
+    "chart.js": "^4.4.3",
+    "chartjs-adapter-date-fns": "^3.0.0",
+    "chartjs-chart-financial": "^0.2.1",
+    "date-fns": "^3.6.0",
     "firebase": "^10.12.5",
     "next": "^14.2.5",
+    "plotly.js": "^2.34.0",
     "react": "^18",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
-    "react-refresh": "^0.14.2"
+    "react-plotly.js": "^2.6.0",
+    "react-refresh": "^0.14.2",
+    "yahoo-finance2": "^2.11.3"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -1,16 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  signOut,
-  signInWithPopup,
-  GoogleAuthProvider
-} from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import Navbar from '../components/Navbar';
-
 const RegisterPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -36,17 +28,6 @@ const RegisterPage = () => {
             console.log('User registered:', userCredential.user);
         } catch (error) {
             console.error('Error registering:', error);
-        }
-    };
-
-    const handleGoogleLogin = async () => {
-        const provider = new GoogleAuthProvider();
-        try {
-            const userCredential = await signInWithPopup(auth, provider);
-            setUser(userCredential.user);
-            console.log('User signed in with Google:', userCredential.user);
-        } catch (error) {
-            console.error('Error signing in with Google:', error);
         }
     };
 
@@ -79,27 +60,22 @@ const RegisterPage = () => {
                         placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="border p-2 mb-2"
                     />
                     <input
                         type="password"
                         placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="border p-2 mb-4"
                     />
                     {isRegistering ? (
-                        <button onClick={handleRegister} className="bg-blue-500 text-white px-4 py-2 rounded mb-2">
+                        <button onClick={handleRegister} className="bg-blue-500 text-white px-4 py-2 rounded">
                             註冊
                         </button>
                     ) : (
-                        <button onClick={handleLogin} className="bg-blue-500 text-white px-4 py-2 rounded mb-2">
+                        <button onClick={handleLogin} className="bg-blue-500 text-white px-4 py-2 rounded">
                             登入
-                            </button>
+                        </button>
                     )}
-                    <button onClick={handleGoogleLogin} className="bg-red-500 text-white px-4 py-2 rounded mb-4">
-                        使用 Google 登入
-                    </button>
                     <button onClick={() => setIsRegistering(!isRegistering)} className="text-blue-500 underline">
                         {isRegistering ? '已有帳號？登入' : '還沒有帳號？註冊'}
                     </button>
