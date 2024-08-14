@@ -1,4 +1,4 @@
-// pages/member.js
+// pages/01member.js
 import { useState, useEffect } from "react";
 import { db } from "../firebase";
 import { useAuth } from "../context/AuthContext";
@@ -15,7 +15,6 @@ import StockPriceChecker from "../components/01StockPriceChecker"; // 這個組�
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-
 export default function MemberPage() {
   const { user } = useAuth(); // 使用 AuthContext 來獲取當前用戶
   const [stockCode, setStockCode] = useState("");
@@ -23,65 +22,50 @@ export default function MemberPage() {
   const [alertPrice, setAlertPrice] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // 當用戶登入時加載追蹤股票
   useEffect(() => {
     if (user) {
-      const fetchStocks = async () => {
-        try {
-          const q = query(
-            collection(db, "stocks"),
-            where("userId", "==", user.uid)
-          );
-          const querySnapshot = await getDocs(q);
-          const stockList = querySnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-          setStocks(stockList);
-          setLoading(false);
-        } catch (error) {
-          console.error("Error fetching stocks:", error);
-          setLoading(false);
-        }
-      };
-
       fetchStocks();
     }
   }, [user]);
 
-  // 添加新的追蹤股票
+  const fetchStocks = async () => {
+    try {
+      const q = query(
+        collection(db, "stocks"),
+        where("userId", "==", user.uid)
+      );
+      const querySnapshot = await getDocs(q);
+      const stockList = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setStocks(stockList);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching stocks:", error);
+      setLoading(false);
+    }
+  };
+
   const handleAddStock = async () => {
     if (stockCode && alertPrice && user) {
+      const formattedStockCode = `${stockCode}.TW`; // 格式化股票代碼
       try {
         await addDoc(collection(db, "stocks"), {
           userId: user.uid,
-          stockCode,
+          stockCode: formattedStockCode, // 保存格式化後的股票代碼
           alertPrice: parseFloat(alertPrice),
           currentPrice: 0,
         });
-
-        // 清空輸入框
         setStockCode("");
         setAlertPrice("");
-
-        // 重新加載股票列表
-        const q = query(
-          collection(db, "stocks"),
-          where("userId", "==", user.uid)
-        );
-        const querySnapshot = await getDocs(q);
-        const stockList = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setStocks(stockList);
+        fetchStocks(); // 重新加載股票列表
       } catch (error) {
         console.error("Error adding stock:", error);
       }
     }
   };
 
-  // 刪除追蹤股票
   const handleDeleteStock = async (id) => {
     try {
       await deleteDoc(doc(db, "stocks", id));
@@ -105,14 +89,14 @@ export default function MemberPage() {
           placeholder="輸入股票代碼"
           value={stockCode}
           onChange={(e) => setStockCode(e.target.value)}
-          disabled={!user} // 當未登入時禁用輸入框
+          disabled={!user}
         />
         <input
           type="number"
           placeholder="提醒價格"
           value={alertPrice}
           onChange={(e) => setAlertPrice(e.target.value)}
-          disabled={!user} // 當未登入時禁用輸入框
+          disabled={!user}
         />
         <button onClick={handleAddStock} disabled={!user}>
           新增股票

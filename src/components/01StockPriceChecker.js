@@ -1,6 +1,6 @@
-// src/components/StockPriceChecker.js
+// src/components/01StockPriceChecker.js
 import { useState, useEffect } from "react";
-import yahooFinance from "yahoo-finance2"; // 確保你已經安裝了這個包：npm install yahoo-finance2
+
 
 export default function StockPriceChecker({ symbol }) {
   const [price, setPrice] = useState(null);
@@ -9,8 +9,11 @@ export default function StockPriceChecker({ symbol }) {
   useEffect(() => {
     const fetchStockPrice = async () => {
       try {
-        const quote = await yahooFinance.quote(symbol);
-        setPrice(quote.regularMarketPrice);
+        setLoading(true);
+        // 調整 API 請求以適應實際可用的 API 並處理 CORS
+        const response = await fetch(`/api/01stockPrice?symbol=${encodeURIComponent(symbol)}`);
+        const data = await response.json();
+        setPrice(data.price);  // 確保這裡與 API 響應匹配
         setLoading(false);
       } catch (error) {
         console.error("Error fetching stock price:", error);
@@ -18,7 +21,9 @@ export default function StockPriceChecker({ symbol }) {
       }
     };
 
-    fetchStockPrice();
+    if (symbol) {
+      fetchStockPrice();
+    }
   }, [symbol]);
 
   if (loading) {
