@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import Head from 'next/head';
 
 const Home = () => {
@@ -42,9 +43,7 @@ const Home = () => {
                     <button className="mt-4 bg-green-500 text-white p-3 rounded">註冊</button>
                 </section>
             </main>
-            <footer className="bg-gray-200 text-center p-4 mt-12">
-                <p>網頁資料來源</p>
-            </footer>
+            <Footer />
         </div>
     );
 };

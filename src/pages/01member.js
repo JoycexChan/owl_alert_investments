@@ -12,6 +12,9 @@ import {
   doc,
 } from "firebase/firestore";
 import StockPriceChecker from "../components/01StockPriceChecker"; // 這個組件來獲取即時股價
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+
 
 export default function MemberPage() {
   const { user } = useAuth(); // 使用 AuthContext 來獲取當前用戶
@@ -94,6 +97,7 @@ export default function MemberPage() {
 
   return (
     <div>
+      <Navbar />
       <h1>會員股票追蹤</h1>
       <div>
         <input
@@ -127,6 +131,7 @@ export default function MemberPage() {
           </li>
         ))}
       </ul>
+      <Footer />
     </div>
   );
 }

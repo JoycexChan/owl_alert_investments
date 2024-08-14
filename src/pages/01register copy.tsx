@@ -24,7 +24,6 @@ const RegisterPage = () => {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             setUser(userCredential.user);
             console.log('User signed in:', userCredential.user);
-            router.push('/01member'); // 登入成功後跳轉到會員頁
         } catch (error) {
             console.error('Error signing in:', error);
         }
@@ -35,7 +34,6 @@ const RegisterPage = () => {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             setUser(userCredential.user);
             console.log('User registered:', userCredential.user);
-            router.push('/01member'); // 註冊成功後跳轉到會員頁
         } catch (error) {
             console.error('Error registering:', error);
         }
@@ -47,7 +45,6 @@ const RegisterPage = () => {
             const userCredential = await signInWithPopup(auth, provider);
             setUser(userCredential.user);
             console.log('User signed in with Google:', userCredential.user);
-            router.push('/01member'); // 使用 Google 登入成功後跳轉到會員頁
         } catch (error) {
             console.error('Error signing in with Google:', error);
         }
@@ -98,7 +95,7 @@ const RegisterPage = () => {
                     ) : (
                         <button onClick={handleLogin} className="bg-blue-500 text-white px-4 py-2 rounded mb-2">
                             登入
-                        </button>
+                            </button>
                     )}
                     <button onClick={handleGoogleLogin} className="bg-red-500 text-white px-4 py-2 rounded mb-4">
                         使用 Google 登入
