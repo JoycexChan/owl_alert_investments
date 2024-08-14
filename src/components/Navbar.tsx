@@ -8,7 +8,7 @@ const Navbar = () => {
     const { user, logout } = useAuth(); // 從 useAuth 中獲取 user 和 logout
 
     const handleRegister = () => {
-        router.push('/register');
+        router.push('/01register');
     };
 
     const handleLogout = () => {
