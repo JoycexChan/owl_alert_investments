@@ -1,6 +1,5 @@
 // pages/01member.js
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import { db } from "../firebase";
 import { useAuth } from "../context/AuthContext";
 import {
@@ -18,18 +17,13 @@ import Footer from '../components/Footer';
 
 export default function MemberPage() {
   const { user } = useAuth(); // 使用 AuthContext 來獲取當前用戶
-  const router = useRouter(); // 使用 useRouter 來進行路由重定向
   const [stockCode, setStockCode] = useState("");
   const [stocks, setStocks] = useState([]);
   const [alertPrice, setAlertPrice] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!user) {
-      // 如果用戶未登入，重定向到首頁
-      router.push("/");
-    } else {
-      // 用戶已登入，則繼續加載收藏的股票
+    if (user) {
       fetchStocks();
     }
   }, [user]);
