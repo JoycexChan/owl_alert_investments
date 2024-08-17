@@ -11,7 +11,7 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
-import StockPriceChecker from "../components/StockPriceChecker"; // 假設你已經實現這個組件來獲取即時股價
+import StockPriceChecker from "../components/01StockPriceChecker"; // 組件獲取即時股價
 
 export default function MemberPage() {
   const { user } = useAuth(); // 使用 AuthContext 來獲取當前用戶
