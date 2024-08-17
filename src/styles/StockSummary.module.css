@@ -1,0 +1,49 @@
+.summaryContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.stockInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.stockName {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.stockDate {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.stockPrice {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.stockChange {
+    font-size: 1.2rem;
+}
+
+.trackButton {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.trackButton:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+}

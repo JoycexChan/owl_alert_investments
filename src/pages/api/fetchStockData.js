@@ -1,4 +1,10 @@
 // pages/api/fetchStockData.js
+//測試 
+//http://localhost:3000/api/fetchStockData?stockNo=100
+//回傳{"error":"Stock not found"}
+//http://localhost:3000/api/fetchStockData?stockNo=2330
+//{"Code":"2330","Name":"台積電","PEratio":"27.22","DividendYield":"1.34","PBratio":"6.63"}
+
 import axios from 'axios';
 
 export default async function handler(req, res) {

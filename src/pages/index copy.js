@@ -6,12 +6,12 @@ const Carousel = () => {
   const sliderRef = useRef(null);
 
   const slides = [
-    { img: '/images/web3.jpg', title: 'Title 3', description: 'Description for Image 3 Again...', link: '/' },
-    { img: '/images/web1.jpg', title: 'Title 1', description: 'Description for Image 1...', link: '/stock-analysis' },
-    { img: '/images/web2.jpg', title: 'Title 2', description: 'Description for Image 2...', link: '/' },
-    { img: '/images/web3.jpg', title: 'Title 3', description: 'Description for Image 3...', link: '/' },
-    { img: '/images/web1.jpg', title: 'Title 1', description: 'Description for Image 1 Again...', link: '/' },
-    { img: '/images/web2.jpg', title: 'Title 2', description: 'Description for Image 2 Again...', link: '/' },
+    { img: '/images/web3.jpg', title: '加入我們', description: '立即註冊，開始你的投資旅程。', link: '/' ,buttonname:'Read More'},
+    { img: '/images/web1.jpg', title: '尋找你的最佳投資，發掘你的生活', description: '高效的股票搜索工具，最佳的選股助手', link: '/stock-analysis' ,buttonname:'Read More'},
+    { img: '/images/web2.jpg', title: '精選清單', description: '發現潛力無限的轉機股，及早參與進取。', link: '/' ,buttonname:'Read More'},
+    { img: '/images/web3.jpg', title: '加入我們', description: '立即註冊，開始你的投資旅程。', link: '/' ,buttonname:'Read More'},
+    { img: '/images/web1.jpg', title: '尋找你的最佳投資，發掘你的生活', description: '高效的股票搜索工具，最佳的選股助手', link: '/stock-analysis' ,buttonname:'Read More'},
+    { img: '/images/web2.jpg', title: '精選清單', description: '發現潛力無限的轉機股，及早參與進取。', link: '/' ,buttonname:'Read More'},
 
   ];
 
@@ -41,7 +41,7 @@ const Carousel = () => {
               <h2 className={styles.title}>{slide.title}</h2>
               <p className={styles.description}>{slide.description}</p>
               <Link href={slide.link}>
-                <button className={styles.button}>Go to {slide.title}</button> 
+                <button className={styles.button}>{slide.buttonname}</button> 
               </Link>
             </div>
           </li>

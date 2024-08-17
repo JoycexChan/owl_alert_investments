@@ -110,10 +110,12 @@
  .content {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 20px;
-padding: 20px;
 
-  width: min(30vw, 400px);
+height: 250px;
+
+  width: min(35vw);
   position: absolute;
+  /* position: relative; */
   top: 50%;
   left: 3rem;
   transform: translateY(-50%);
@@ -127,15 +129,20 @@ padding: 20px;
   & .title {
     font-family: "arial-black", system-ui;
     text-transform: uppercase;
+    font-size: 1.5rem;
   }
 
   & .description {
     line-height: 1.7;
     margin: 1rem 0 1.5rem;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
   }
 
   & button {
+    height: 5vh;
+    width: 10vw;
+    font-size: 0.7rem;
+
     width: fit-content;
     background-color: rgba(0, 0, 0, 0.1);
     color: white;
@@ -143,21 +150,24 @@ padding: 20px;
     border-radius: 0.25rem;
     padding: 0.75rem;
     cursor: pointer;
+    
   }
 } 
 
-
-/* .content {
+.contentin {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.5); 
-  color: white;
+  bottom: 0; /* 將子元素置底 */
   padding: 20px;
-  box-sizing: border-box;
-} */
+}
 
+.searchBox input{
+  height: 5vh;
+  width: 20vw;
+  background-color: white;
+      border-radius: 0.25rem;
+      border: 2px solid white;
+      border-radius: 0.25rem;
+}
 
 .slide:nth-of-type(2) .content {
   display: block;
@@ -299,6 +309,17 @@ padding: 20px;
     }
   }
 
+
+  .searchBox input{
+
+    width: 9.5vw;
+    background-color: white;
+        border-radius: 0.25rem;
+        border: 2px solid white;
+
+  }
+
+
   .slide {
     width: 130px;
     height: 220px;
@@ -321,3 +342,6 @@ padding: 20px;
     }
   }
 }
+
+
+
