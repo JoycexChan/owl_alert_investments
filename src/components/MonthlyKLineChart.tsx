@@ -4,8 +4,8 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 
 function getLastHalfYearRange() {
-  const endDate = dayjs().format('YYYY-MM-DD'); // 当前日期
-  const startDate = dayjs().subtract(6, 'month').format('YYYY-MM-DD'); // 半年前的日期
+  const endDate = dayjs().format('YYYY-MM-DD');
+  const startDate = dayjs().subtract(6, 'month').format('YYYY-MM-DD');
   return { startDate, endDate };
 }
 
@@ -37,6 +37,7 @@ interface StockKLineData {
 }
 
 function calculateMovingAverage(data: number[], period: number): number[] {
+  if (data.length < period) return []; // 如果數據長度小於移動平均期，返回空數組
   let averages: number[] = [];
   for (let i = 0; i <= data.length - period; i++) {
     let sum = 0;
@@ -66,14 +67,14 @@ const EnhancedKLineChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
   const lowPrices = kData.map(item => item.min);
   const closePrices = kData.map(item => item.close);
 
-  // 修正移動平均線的日期數組
-  const fiveDayMADates = dates.slice(4);
-  const twoWeekMADates = dates.slice(9);
-  const monthMADates = dates.slice(19);
-
   const fiveDayMA = calculateMovingAverage(closePrices, 5);
   const twoWeekMA = calculateMovingAverage(closePrices, 10);
   const monthMA = calculateMovingAverage(closePrices, 20);
+
+  // 確保 MA 數據存在，且對應的日期數據也正確
+  const validFiveDayMADates = dates.slice(4, 4 + fiveDayMA.length);
+  const validTwoWeekMADates = dates.slice(9, 9 + twoWeekMA.length);
+  const validMonthMADates = dates.slice(19, 19 + monthMA.length);
 
   return (
     <Plot
@@ -88,10 +89,10 @@ const EnhancedKLineChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
           open: openPrices,
           type: 'candlestick',
           xaxis: 'x',
-          yaxis: 'y', 
+          yaxis: 'y',
         },
         {
-          x: fiveDayMADates,
+          x: validFiveDayMADates,
           y: fiveDayMA,
           type: 'scatter',
           mode: 'lines',
@@ -100,7 +101,7 @@ const EnhancedKLineChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
           yaxis: 'y',
         },
         {
-          x: twoWeekMADates,
+          x: validTwoWeekMADates,
           y: twoWeekMA,
           type: 'scatter',
           mode: 'lines',
@@ -109,7 +110,7 @@ const EnhancedKLineChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
           yaxis: 'y',
         },
         {
-          x: monthMADates,
+          x: validMonthMADates,
           y: monthMA,
           type: 'scatter',
           mode: 'lines',
@@ -123,7 +124,7 @@ const EnhancedKLineChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
         xaxis: { type: 'category' },
         yaxis: { autorange: true },
         showlegend: true,
-        grid: { rows: 1, columns: 1 }, 
+        grid: { rows: 1, columns: 1 },
       }}
       config={{
         displayModeBar: false,

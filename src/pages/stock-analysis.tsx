@@ -4,12 +4,11 @@ import { useRouter } from 'next/router';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import StockSummary from '../components/StockSummary';
-
 import dynamic from 'next/dynamic';
 
 // 使用 dynamic 延迟加载 MonthlyKLineChart
 const MonthlyKLineChart = dynamic(() => import('../components/MonthlyKLineChart'), { ssr: false });
-
+const RevenueChart = dynamic(() => import('../components/RevenueChart'), { ssr: false });
 
 const StockAnalysis = () => {
   const [selectedSection, setSelectedSection] = useState('latest');
@@ -40,7 +39,8 @@ const StockAnalysis = () => {
 
 
 {selectedSection === 'diagnosis' && code && (
-            <StockSummary stockCode={code as string} />
+            <RevenueChart stockCode={code as string} />
+
           )}
 
 {selectedSection === 'financial' && code && (
@@ -61,7 +61,7 @@ const StockAnalysis = () => {
 
 {selectedSection === 'valuation' && code && (
             <StockSummary stockCode={code as string} />
-          )}
+          )} 
         </div>
       </div>
     </div>
