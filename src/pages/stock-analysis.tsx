@@ -2,10 +2,11 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import Sidebar from '../components/Sidebar';
 import StockSummary from '../components/StockSummary';
 import dynamic from 'next/dynamic';
-
+import TaiwanStockNews from '../components/TaiwanStockNews';
 // 使用 dynamic 延迟加载 MonthlyKLineChart
 const MonthlyKLineChart = dynamic(() => import('../components/MonthlyKLineChart'), { ssr: false });
 const RevenueChart = dynamic(() => import('../components/RevenueChart'), { ssr: false });
@@ -34,36 +35,27 @@ const StockAnalysis = () => {
             <>
               <StockSummary stockCode={code as string} />
               <MonthlyKLineChart stockCode={code as string} />
+              </>
+          )}
+
+          {/* 新增 financial 選擇時顯示 RevenueChart */}
+          {selectedSection === 'financial' && code && (
+            <>
+            <StockSummary stockCode={code as string} />
+              <RevenueChart stockCode={code as string} />
             </>
           )}
 
-
-{selectedSection === 'diagnosis' && code && (
-            <RevenueChart stockCode={code as string} />
-
-          )}
-
-{selectedSection === 'financial' && code && (
+                    {/* 新增 financial 選擇時顯示 RevenueChart */}
+                    {selectedSection === 'news' && code && (
+            <>
             <StockSummary stockCode={code as string} />
+            <TaiwanStockNews stockCode={code as string} />
+            </>
           )}
-
-{selectedSection === 'profitability' && code && (
-            <StockSummary stockCode={code as string} />
-          )}
-
-{selectedSection === 'safety' && code && (
-            <StockSummary stockCode={code as string} />
-          )}
-
-{selectedSection === 'growth' && code && (
-            <StockSummary stockCode={code as string} />
-          )}
-
-{selectedSection === 'valuation' && code && (
-            <StockSummary stockCode={code as string} />
-          )} 
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

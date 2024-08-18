@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 // 資料假設
@@ -55,16 +56,17 @@ const StrategyInfo = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
+          {/* <tr>
             <td>2024-01-01</td>
             <td>XYZ 股份</td>
             <td>$100</td>
             <td>$150</td>
             <td>+50%</td>
-          </tr>
+          </tr> */}
           {/* 更多行數據 */}
         </tbody>
       </table>
+      <Footer />
     </div>
   );
 };
