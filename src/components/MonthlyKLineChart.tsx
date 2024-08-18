@@ -66,6 +66,11 @@ const EnhancedKLineChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
   const lowPrices = kData.map(item => item.min);
   const closePrices = kData.map(item => item.close);
 
+  // 修正移動平均線的日期數組
+  const fiveDayMADates = dates.slice(4);
+  const twoWeekMADates = dates.slice(9);
+  const monthMADates = dates.slice(19);
+
   const fiveDayMA = calculateMovingAverage(closePrices, 5);
   const twoWeekMA = calculateMovingAverage(closePrices, 10);
   const monthMA = calculateMovingAverage(closePrices, 20);
@@ -83,10 +88,10 @@ const EnhancedKLineChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
           open: openPrices,
           type: 'candlestick',
           xaxis: 'x',
-          yaxis: 'y', // 明确指定使用第一個 Y 軸
+          yaxis: 'y', 
         },
         {
-          x: dates,
+          x: fiveDayMADates,
           y: fiveDayMA,
           type: 'scatter',
           mode: 'lines',
@@ -95,7 +100,7 @@ const EnhancedKLineChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
           yaxis: 'y',
         },
         {
-          x: dates,
+          x: twoWeekMADates,
           y: twoWeekMA,
           type: 'scatter',
           mode: 'lines',
@@ -104,7 +109,7 @@ const EnhancedKLineChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
           yaxis: 'y',
         },
         {
-          x: dates,
+          x: monthMADates,
           y: monthMA,
           type: 'scatter',
           mode: 'lines',
@@ -118,17 +123,13 @@ const EnhancedKLineChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
         xaxis: { type: 'category' },
         yaxis: { autorange: true },
         showlegend: true,
-        yaxis2: { showgrid: false, zeroline: false, visible: false }, // 明确隐藏第二个 Y 轴
-        grid: { rows: 1, columns: 1 }, // 明確指定为单一图表
+        grid: { rows: 1, columns: 1 }, 
       }}
-
-
       config={{
-        displayModeBar: false, // 根据需要隐藏工具栏
+        displayModeBar: false,
       }}
     />
   );
 };
-
 
 export default EnhancedKLineChart;

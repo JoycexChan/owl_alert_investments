@@ -866,7 +866,7 @@
   dependencies:
     undici-types "~5.26.4"
 
-"@types/plotly.js@*":
+"@types/plotly.js@*", "@types/plotly.js@^2.33.3":
   version "2.33.3"
   resolved "https://registry.yarnpkg.com/@types/plotly.js/-/plotly.js-2.33.3.tgz#18891de51834c963ce8bf4da7f5e4d3aec613c13"
   integrity sha512-Uu9aC8Z5oMj+oq1QHKtZAug9uAdPV66KPZrIa+r26bhktfuAbSCIq2HDN1kFPrcci0QKNCh8Gqj1GtMYvfoEUQ==
@@ -891,9 +891,17 @@
     "@types/plotly.js" "*"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^18":
+"@types/react@*":
   version "18.3.3"
   resolved "https://registry.npmjs.org/@types/react/-/react-18.3.3.tgz"
+  integrity sha512-hti/R0pS0q1/xx+TsI73XIqk26eBsISZ2R0wUijXIngRK9R/e7Xw/cXVxQK7R5JjW+SV4zGcn5hXjudkN/pLIw==
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^3.0.2"
+
+"@types/react@^18.3.3":
+  version "18.3.3"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.3.3.tgz#9679020895318b0915d7a3ab004d92d33375c45f"
   integrity sha512-hti/R0pS0q1/xx+TsI73XIqk26eBsISZ2R0wUijXIngRK9R/e7Xw/cXVxQK7R5JjW+SV4zGcn5hXjudkN/pLIw==
   dependencies:
     "@types/prop-types" "*"
