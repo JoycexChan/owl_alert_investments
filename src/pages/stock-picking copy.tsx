@@ -3,7 +3,6 @@ import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import StockPicking from '../components/stock-picking2'; // 匯入 StockPicking 組件
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -33,7 +32,7 @@ const StrategyInfo = () => {
 
   return (
     <div>
-      <Navbar />
+            <Navbar />
       <h1>精選清單</h1>
       <button onClick={() => setShowModal(true)}>查看策略原理</button>
       {showModal && (
@@ -68,10 +67,6 @@ const StrategyInfo = () => {
           {/* 更多行數據 */}
         </tbody>
       </table>
-
-      {/* 在這裡插入轉機股排行 */}
-      <h2>轉機股排行</h2>
-      <StockPicking /> {/* 直接使用 StockPicking 組件 */}
 
       <Footer />
     </div>
