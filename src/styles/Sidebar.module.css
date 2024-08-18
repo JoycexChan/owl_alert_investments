@@ -2,9 +2,11 @@
     width: 200px;
     background-color: #f4f4f4;
     padding: 20px;
-    position: fixed;
-    height: 100vh;
-    overflow: auto;
+
+    height: 50vh;
+    /* position: fixed; 
+    left: 50px; 
+    top: 100px;  */
 }
 
 .sidebar ul {
