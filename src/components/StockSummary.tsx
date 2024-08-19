@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { db } from "../firebase"; // 正确的相对路径
-import { useAuth } from "../AuthContext"; // 引入 AuthContext
+import { useAuth } from "../context/AuthContext"; // 引入 AuthContext
 import { collection, addDoc } from "firebase/firestore"; // 引入 Firestore 的方法
 import styles from '../styles/StockSummary.module.css';
 

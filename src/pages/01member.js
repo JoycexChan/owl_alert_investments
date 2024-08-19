@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/router";
 import { db } from "../firebase";
-import { useAuth } from "../AuthContext";
+import { useAuth } from "../context/AuthContext";
 import {
   collection,
   addDoc,

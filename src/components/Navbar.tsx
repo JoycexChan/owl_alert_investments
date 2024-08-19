@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useAuth } from '../AuthContext';
+import { useAuth } from '../context/AuthContext';
 import styles from '../styles/Navbar.module.css';
 
 const Navbar = () => {
