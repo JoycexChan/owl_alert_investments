@@ -14,7 +14,7 @@ export default async function handler(req, res) {
         const response = await fetch(`https://owl-alert-investments.vercel.app/api/01stockPrice?symbol=${encodeURIComponent(stockCode)}`);
         const data = await response.json();
 
-        if (data.price < alertPrice) {
+        if (data.price > alertPrice) {
           await updateDoc(doc(db, "stocks", stock.id), {
             currentPrice: data.price,
             alertTriggered: true,
