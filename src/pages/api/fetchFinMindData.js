@@ -6,13 +6,13 @@ async function fetchFinMindData() {
     // 獲取當前日期
     const today = new Date();
     const todayDateString = today.toISOString().split('T')[0]; // 轉換為 YYYY-MM-DD 格式
-
+    const token = process.env.NEXT_PUBLIC_FINMIND_API_TOKEN;
     const params = {
         dataset: 'TaiwanStockNews', // 你想查詢的資料集
         data_id: '2330',             // 例如台積電的股票代碼
         start_date: todayDateString, // 使用當天日期作為開始日期
         end_date: todayDateString,   // 使用當天日期作為結束日期
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRlIjoiMjAyNC0wOC0xMyAxMjowNTozOSIsInVzZXJfaWQiOiJqb3ljZTc3MDEwOSIsImlwIjoiMTEyLjEwNS42NS4xMTQifQ.m_EctSsfqXA36C90qi1YVo4sycMWZWhc5rcpQDmJFZo' // 換成有效的 Token
+        token: token,
     };
 
     try {

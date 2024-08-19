@@ -3,6 +3,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyC3AFIJqvxIChApgZoLFT8Qg8fI59mUiAA",
     authDomain: "owl-alert-investments.firebaseapp.com",
@@ -12,6 +13,9 @@ const firebaseConfig = {
     appId: "1:754544126727:web:15d52b521ae1b4b6c1f3a2",
     measurementId: "G-KMHVVJ1GTX"
   };
+
+
+
 
   
   // 初始化 Firebase 應用

@@ -1,72 +1,62 @@
-import React, { useState, useEffect } from 'react';
+// components/TaiwanStockNews.tsx
+import { useEffect, useState } from 'react';
 import axios from 'axios';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
 interface TaiwanStockNewsProps {
-  stockCode: string;
+    stockCode: string;
 }
 
-interface NewsItem {
-  title: string;
-  link: string;
-  date: string;
-  summary: string;
-}
+const TaiwanStockNews = ({ stockCode }: TaiwanStockNewsProps) => {
+    const [news, setNews] = useState<any[]>([]);
+    const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
-const TaiwanStockNews: React.FC<TaiwanStockNewsProps> = ({ stockCode }) => {
-  const [news, setNews] = useState<NewsItem[]>([]);
-  
-  // 設置為當天日期
-  const today = new Date().toISOString().split('T')[0];
-  
-  // 設置為一個月前的日期
-  const oneMonthAgo = new Date(new Date().setMonth(new Date().getMonth() - 1)).toISOString().split('T')[0];
+    useEffect(() => {
+        const fetchNews = async () => {
+            if (!stockCode || !selectedDate) return;
 
-  useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const response = await axios.get('https://api.finmindtrade.com/api/v4/data', {
-          params: {
-            dataset: 'TaiwanStockNews',
-            data_id: 2330,
-            start_date: today,
-            end_date: today,
-            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRlIjoiMjAyNC0wOC0xOCAxMDo0NTozNSIsInVzZXJfaWQiOiJqb3ljZTc3MDEwOSIsImlwIjoiMTEyLjEwNS42Ni4xMSJ9.v0UaV5fhQccPEQmBv2DBS07bg5Pi3V29QCHNRy5aJ6E', // 請使用您的實際 token
-          },
-        });
+            const formattedDate = selectedDate.toISOString().split('T')[0]; // 格式化日期为 YYYY-MM-DD
 
-        const newsData = response.data.data.map((item: any) => ({
-          title: item.title,
-          link: item.url,
-          date: item.date,
-          summary: item.summary
-        }));
+            try {
+                const response = await axios.get('/api/TaiwanStockNews', {
+                    params: {
+                        stock_id: stockCode,
+                        start_date: formattedDate,
+                        end_date: formattedDate,
+                    },
+                });
+                setNews(response.data);
+            } catch (error) {
+                console.error('Error fetching Taiwan stock news:', error);
+            }
+        };
 
-        setNews(newsData);
-      } catch (error) {
-        console.error('Error fetching stock news:', error);
-      }
-    };
+        fetchNews();
+    }, [stockCode, selectedDate]);
 
-    if (stockCode) {
-      fetchNews();
-    }
-  }, [stockCode, oneMonthAgo, today]);
-
-  return (
-    <div>
-      <h2>Related News for Stock {stockCode}</h2>
-      <ul>
-        {news.map((item, index) => (
-          <li key={index}>
-            <a href={item.link} target="_blank" rel="noopener noreferrer">
-              {item.title} - {item.date}
-            </a>
-            <p>{item.summary}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+    return (
+        <div>
+            <h1>台股相關新聞</h1>
+            <div>
+                <label>選擇日期: </label>
+                <DatePicker
+                    selected={selectedDate}
+                    onChange={(date: Date | null) => setSelectedDate(date)}
+                    dateFormat="yyyy-MM-dd"
+                />
+            </div>
+            <ul>
+                {news.map((item, index) => (
+                    <li key={index}>
+                        <h2>{item.title}</h2>
+                        <p>{item.content}</p>
+                        <p><em>{item.date}</em></p>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
 };
 
 export default TaiwanStockNews;

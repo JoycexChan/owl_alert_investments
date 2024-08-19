@@ -12,7 +12,7 @@ const Sidebar = ({ onSelect }: { onSelect: (section: string) => void }) => {
                 <li onClick={() => onSelect('safety')}>安全性分析</li>
                 <li onClick={() => onSelect('growth')}>成長力分析</li>
                 <li onClick={() => onSelect('valuation')}>價值評估</li> */}
-                {/* <li onClick={() => onSelect('news')}>相關新聞</li> */}
+                <li onClick={() => onSelect('news')}>相關新聞</li>
             </ul>
         </div>
     );

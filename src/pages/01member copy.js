@@ -51,38 +51,20 @@ export default function MemberPage() {
 
   const handleAddStock = async () => {
     if (!stockCode || !alertPrice || !user) return;
-    
     try {
-        // 檢查是否已經存在該股票代碼
-        const q = query(
-            collection(db, "stocks"),
-            where("userId", "==", user.uid),
-            where("stockCode", "==", `${stockCode}.TW`)
-        );
-        const querySnapshot = await getDocs(q);
-        
-        if (querySnapshot.size > 0) {
-            // 已存在該股票代碼，更新該記錄
-            const existingStockDoc = querySnapshot.docs[0];
-            await deleteDoc(doc(db, "stocks", existingStockDoc.id));
-        }
-        
-        // 創建新記錄或更新現有記錄
-        await addDoc(collection(db, "stocks"), {
-            userId: user.uid,
-            stockCode: `${stockCode}.TW`, // 假設需要添加 `.TW`
-            alertPrice: parseFloat(alertPrice),
-            currentPrice: 0,
-        });
-        
-        setStockCode("");
-        setAlertPrice("");
-        fetchStocks();
+      await addDoc(collection(db, "stocks"), {
+        userId: user.uid,
+        stockCode: `${stockCode}.TW`, // Assume you need to append `.TW`
+        alertPrice: parseFloat(alertPrice),
+        currentPrice: 0,
+      });
+      setStockCode("");
+      setAlertPrice("");
+      fetchStocks();
     } catch (error) {
-        console.error("Error adding stock:", error);
+      console.error("Error adding stock:", error);
     }
-};
-
+  };
 
   const handleDeleteStock = async (id) => {
     try {

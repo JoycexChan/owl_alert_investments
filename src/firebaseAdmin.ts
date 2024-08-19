@@ -1,11 +1,16 @@
 // src/firebaseAdmin.ts
 import * as admin from 'firebase-admin';
-import serviceAccount from './owl-alert-investments-firebase-adminsdk-di51a-0363347783.json';
 
 if (!admin.apps.length) {
   admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
+    credential: admin.credential.cert({
+      projectId: process.env.FIREBASE_PROJECT_ID,
+      privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),  // 需要處理換行符號
+      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+    }),
+    databaseURL: "https://owl-alert-investments-default-rtdb.firebaseio.com"
   });
 }
 
 export default admin;
+
