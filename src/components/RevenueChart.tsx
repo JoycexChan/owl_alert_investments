@@ -16,6 +16,7 @@ function getLastFiveYearsRange() {
 
 async function fetchRevenueData(stockCode: string): Promise<RevenueData[]> {
   const { startDate, endDate } = getLastFiveYearsRange();
+  const token = process.env.NEXT_PUBLIC_FINMIND_API_TOKEN;
   try {
     const response = await axios.get('https://api.finmindtrade.com/api/v4/data', {
       params: {
@@ -23,7 +24,7 @@ async function fetchRevenueData(stockCode: string): Promise<RevenueData[]> {
         data_id: stockCode,
         start_date: startDate,
         end_date: endDate,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRlIjoiMjAyNC0wOC0xOCAwODoxMTo1MSIsInVzZXJfaWQiOiJqb3ljZTc3MDEwOSIsImlwIjoiMTEyLjEwNS42Ni4xMSJ9.WWbP9VdcjVyGXDlF-gFsWWsHOFMFdj-tTB4f2dSzeEY',
+        token: token,
       },
     });
     return response.data.data.map((item: any) => ({

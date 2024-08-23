@@ -1,4 +1,7 @@
 // src/firebaseAdmin.ts
+//src 資料夾：用來放置應用的主要邏輯和功能模組，涵蓋應用的配置、核心功能、API 調用等。
+//後端的 Firebase 初始化檔案
+
 import * as admin from 'firebase-admin';
 
 if (!admin.apps.length) {

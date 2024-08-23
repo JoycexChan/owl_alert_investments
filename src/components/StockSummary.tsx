@@ -23,6 +23,7 @@ const StockSummary: React.FC<StockSummaryProps> = ({ stockCode }) => {
   const [isTracked, setIsTracked] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const { user } = useAuth(); // 获取当前用户
+  const token = process.env.NEXT_PUBLIC_FINMIND_API_TOKEN;
 
   useEffect(() => {
     const fetchStockData = async () => {
@@ -30,7 +31,7 @@ const StockSummary: React.FC<StockSummaryProps> = ({ stockCode }) => {
         setError(null); // 清除之前的错误状态
 
         // 先获取股票名称
-        const nameResponse = await axios.get(`https://api.finmindtrade.com/api/v4/data?dataset=TaiwanStockInfo&data_id=${stockCode}&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRlIjoiMjAyNC0wOC0xOCAwNjoxNjoyNiIsInVzZXJfaWQiOiJqb3ljZTc3MDEwOSIsImlwIjoiMTEyLjEwNS42Ni4xMSJ9.3F57WTmvMUcd6oFQoiQVmk3oON-6T5148wjObwBpOqQ`);
+        const nameResponse = await axios.get(`https://api.finmindtrade.com/api/v4/data?dataset=TaiwanStockInfo&data_id=${stockCode}&token=${token}`);
         
         if (!nameResponse.data || !nameResponse.data.data || nameResponse.data.data.length === 0) {
           throw new Error('Stock name not found');
@@ -39,7 +40,7 @@ const StockSummary: React.FC<StockSummaryProps> = ({ stockCode }) => {
         const stockName = nameResponse.data.data[0].stock_name;
 
         // 获取股价及其他数据
-        const response = await axios.get(`https://api.finmindtrade.com/api/v4/data?dataset=TaiwanStockPrice&data_id=${stockCode}&start_date=2024-08-01&end_date=2024-08-18&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRlIjoiMjAyNC0wOC0xOCAwNjoxNjoyNiIsInVzZXJfaWQiOiJqb3ljZTc3MDEwOSIsImlwIjoiMTEyLjEwNS42Ni4xMSJ9.3F57WTmvMUcd6oFQoiQVmk3oON-6T5148wjObwBpOqQ`);
+        const response = await axios.get(`https://api.finmindtrade.com/api/v4/data?dataset=TaiwanStockPrice&data_id=${stockCode}&start_date=2024-08-01&end_date=2024-08-18&token=${token}`);
         
         if (response.data.data.length === 0) {
           throw new Error('Stock not found');
