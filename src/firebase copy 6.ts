@@ -1,6 +1,4 @@
-// src/firebase.ts
-// src 資料夾：用來放置應用的主要邏輯和功能模組，涵蓋應用的配置、核心功能、API 調用等。
-// 前端的 Firebase 初始化檔案
+// /src/firebase.ts
 
 import { initializeApp, getApps, FirebaseApp } from "firebase/app";
 import { getFirestore, Firestore } from "firebase/firestore";
@@ -18,7 +16,7 @@ const firebaseConfig = {
 };
 
 // 初始化 Firebase 應用，檢查是否已經初始化過
-export const app: FirebaseApp = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0]; // 這裡導出 app 變數
+const app: FirebaseApp = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
 
 // 獲取 Firestore 資料庫
 export const db: Firestore = getFirestore(app);
@@ -50,18 +48,20 @@ if (typeof window !== "undefined" && typeof navigator !== "undefined") {
     }
   });
 
-  // 監聽前景消息
-  onMessage(messaging, (payload) => {
-    console.log('Message received. ', payload);
-    const notificationTitle = payload.notification?.title || 'No title';
-    const notificationOptions = {
-      body: payload.notification?.body || 'No body',
-      icon: '/firebase-logo.png'
-    };
+// 監聽前景消息
+onMessage(messaging, (payload) => {
+  console.log('Message received. ', payload);
+  const notificationTitle = payload.notification?.title || 'No title';
+  const notificationOptions = {
+    body: payload.notification?.body || 'No body',
+    icon: '/firebase-logo.png'
+  };
 
-    // 使用瀏覽器內建的通知 API
-    if (Notification.permission === 'granted') {
-      new Notification(notificationTitle, notificationOptions);
-    }
-  });
+  // 使用瀏覽器內建的通知 API
+  if (Notification.permission === 'granted') {
+    new Notification(notificationTitle, notificationOptions);
+  }
+});
+
+  
 }

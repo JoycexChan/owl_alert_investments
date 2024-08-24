@@ -63,16 +63,7 @@ const Carousel = () => {
   ];
 
   useEffect(() => {
-          // 在組件載入時請求通知權限
-          if (typeof window !== "undefined" && typeof Notification !== "undefined") {
-            Notification.requestPermission().then(permission => {
-              if (permission === "granted") {
-                console.log("Notification permission granted.");
-              } else {
-                console.log("Notification permission denied.");
-              }
-            });
-          }
+
     const slider = sliderRef.current;
     const items = slider.querySelectorAll('.item');
 

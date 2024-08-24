@@ -6,6 +6,8 @@ import { useRouter } from 'next/router';
 import styles from '../styles/Carousel2.module.css';
 // 導入 Firebase 初始化和 FCM 設定
 import '../firebase'; // 假設 firebase 設定檔案是 firebase.ts
+
+
 const Carousel = () => {
   const sliderRef = useRef(null);
   const [stockCode, setStockCode] = useState(''); // State to store the stock code
@@ -63,16 +65,6 @@ const Carousel = () => {
   ];
 
   useEffect(() => {
-          // 在組件載入時請求通知權限
-          if (typeof window !== "undefined" && typeof Notification !== "undefined") {
-            Notification.requestPermission().then(permission => {
-              if (permission === "granted") {
-                console.log("Notification permission granted.");
-              } else {
-                console.log("Notification permission denied.");
-              }
-            });
-          }
     const slider = sliderRef.current;
     const items = slider.querySelectorAll('.item');
 
