@@ -1,7 +1,6 @@
 // src/firebase.ts
 // src 資料夾：用來放置應用的主要邏輯和功能模組，涵蓋應用的配置、核心功能、API 調用等。
 // 前端的 Firebase 初始化檔案
-
 import { initializeApp, getApps, FirebaseApp } from "firebase/app";
 import { getFirestore, Firestore } from "firebase/firestore";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
@@ -17,8 +16,12 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID as string,
 };
 
-// 初始化 Firebase 應用，檢查是否已經初始化過
-export const app: FirebaseApp = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0]; // 這裡導出 app 變數
+// 初始化 Firebase 應用，只在第一次調用時進行初始化
+export function initializeFirebaseApp(): FirebaseApp {
+  return !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
+}
+
+export const app: FirebaseApp = initializeFirebaseApp(); // 這裡導出 app 變數
 
 // 獲取 Firestore 資料庫
 export const db: Firestore = getFirestore(app);
