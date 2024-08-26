@@ -1,6 +1,6 @@
 // src/lib/stockService.js
 
-const fetch = require('node-fetch');  // 使用 node-fetch 來處理 HTTP 請求
+import fetch from 'node-fetch';  // 使用 import 來引入 node-fetch
 
 /**
  * 獲取特定股票的當前價格。
@@ -19,6 +19,4 @@ async function getCurrentStockPrice(stockSymbol) {
     }
 }
 
-module.exports = {
-    getCurrentStockPrice
-};
+export { getCurrentStockPrice };  // 使用 export 而不是 module.exports
