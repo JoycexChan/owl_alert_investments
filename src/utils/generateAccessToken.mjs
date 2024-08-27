@@ -1,5 +1,5 @@
 // /src/utils/generateAccessToken.mjs
-
+// 生成訪問令牌
 import { JWT } from 'google-auth-library';
 import dotenv from 'dotenv';
 import path from 'path';

@@ -1,4 +1,4 @@
-// src/firebase.ts
+// src/firebase.js
 // src 資料夾：用來放置應用的主要邏輯和功能模組，涵蓋應用的配置、核心功能、API 調用等。
 // 前端的 Firebase 初始化檔案
 import { initializeApp, getApps, FirebaseApp } from "firebase/app";
@@ -7,30 +7,30 @@ import { getMessaging, getToken, onMessage, Messaging} from "firebase/messaging"
 
 //  Firebase 配置
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY as string,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN as string,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID as string,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET as string,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID as string,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID as string,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID as string,
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-// 初始化 Firebase 應用，只在第一次調用時進行初始化
-// 如果應用尚未初始化 (!getApps().length)，就會呼叫 initializeApp(firebaseConfig) 進行初始化，否則直接返回已初始化的應用 (getApps()[0])
-export function initializeFirebaseApp(): FirebaseApp {
-  return !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
-}
+// 初始化 Firebase 应用，只在第一次调用时进行初始化
+export function initializeFirebaseApp() {
+    return !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
+  }
 
-// 導出 app 變數(允許訪問firebase的服務，不需重複初始化)
-const app: FirebaseApp = initializeFirebaseApp(); 
+// 导出 app 变量(允许访问 Firebase 的服务，不需重复初始化)
+const app = initializeFirebaseApp(); 
 
-// 獲取 Firestore 資料庫(讀寫資料庫資料)
-const db: Firestore = getFirestore(app);
+// 获取 Firestore 数据库(读写数据库数据)
+const db = getFirestore(app);
 
-// 客戶端初始化 Firebase Messaging(FCM)
-// 初始化 Firebase Messaging 並導出
-let messaging: Messaging | null = null;
+// 客户端初始化 Firebase Messaging(FCM)
+// 初始化 Firebase Messaging 并导出
+let messaging = null;
+
 
 if (typeof window !== "undefined" && typeof navigator !== "undefined") {
   messaging = getMessaging(app);
@@ -42,8 +42,8 @@ if (typeof window !== "undefined" && typeof navigator !== "undefined") {
       if (permission === "granted") {
         console.log("Notification permission granted.");
 
-        // 獲取 FCM Token，使用非空斷言操作符
-        getToken(messaging!, { vapidKey: process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY as string })
+        // 获取 FCM Token
+        getToken(messaging, { vapidKey: process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY })
           .then((currentToken) => {
             if (currentToken) {
               console.log("FCM token:", currentToken);
@@ -79,5 +79,3 @@ if (typeof window !== "undefined" && typeof navigator !== "undefined") {
 
 // 導出 app, db 和 messaging 變數
 export { app, db, messaging };
-
-//messaging 是與 Firebase Cloud Messaging (FCM) 互動的工具，允許管理通知、請求權限和獲取 Token 的實例。這些功能是實現 Web 推送通知的核心部分。

@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import { useAuth } from '../context/AuthContext';
 import styles from '../styles/Navbar.module.css';
 
+
+
 const Navbar = () => {
     const router = useRouter();
     const { user, logout } = useAuth();
@@ -26,6 +28,7 @@ const Navbar = () => {
 
     return (
         <nav className={styles.navbar}>
+
             <ul className={styles.navLinks}>
                 <li><Link href="/">首頁</Link></li>
                 <li><Link href="/stock-analysis?code=2330">個股</Link></li>

@@ -1,25 +1,14 @@
 // /src/context/AuthContext.js
-
+// Firebase 初始化：程式碼首先初始化 Firebase 應用，並配置身份驗證和 Firestore 資料庫。
+// Context API：通過 Context API，程式碼創建了一個全局的身份驗證上下文，讓應用中的其他組件可以方便地訪問和管理用戶的身份狀態。
+// 用戶狀態管理：通過 useEffect 監聽用戶的身份變化，並在用戶登入時執行相關的操作，如獲取 FCM token 並將其儲存到 Firestore 中。
+// 身份驗證功能：提供了註冊、登入和登出功能，並將這些功能通過 Context API 提供給應用中的其他組件。
 import { createContext, useContext, useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { initializeApp } from 'firebase/app';
-import { getMessaging, getToken } from 'firebase/messaging';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { getToken } from 'firebase/messaging';
+import { doc, setDoc } from 'firebase/firestore';
+import { app, db, messaging } from '../firebase'; // 從 firebase.ts 導入已初始化的 app, db, messaging
 
-const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
-};
-
-// 初始化 Firebase 應用
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const firestore = getFirestore(app);
 
 // 創建一個 Context 對象
 export const AuthContext = createContext();
@@ -31,19 +20,19 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
+    const auth = getAuth(app); // 使用已初始化的 app 獲取 auth
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setUser(user);
 
         // 確保這段代碼只在客戶端執行
         if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
-          const messaging = getMessaging(app);
 
           // 當用戶登入時取得 FCM Token 並儲存到 Firestore
           try {
             const fcmToken = await getToken(messaging, { vapidKey: process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY });
             if (fcmToken) {
-              await setDoc(doc(firestore, 'users', user.uid), { fcmToken }, { merge: true });
+              await setDoc(doc(db, 'users', user.uid), { fcmToken }, { merge: true });
               console.log('FCM Token stored successfully:', fcmToken);
             } else {
               console.log('No FCM Token retrieved');
