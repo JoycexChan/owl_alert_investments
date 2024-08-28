@@ -61,7 +61,7 @@ const Carousel = () => {
     },
 
   ];
-// 312312
+
   useEffect(() => {
           // 在組件載入時請求通知權限
           if (typeof window !== "undefined" && typeof Notification !== "undefined") {
@@ -84,9 +84,19 @@ const Carousel = () => {
       }
     }
 
-    slider.addEventListener('click', activate);
-    return () => slider.removeEventListener('click', activate);
-  }, []);
+  //   slider.addEventListener('click', activate);
+  //   return () => slider.removeEventListener('click', activate);
+  // }, []);
+
+  slider.addEventListener('click', activate);
+  slider.addEventListener('touchend', activate);  // 增加觸摸事件
+
+  return () => {
+    slider.removeEventListener('click', activate);
+    slider.removeEventListener('touchend', activate);
+  };
+}, []);
+
 
   const handleSearch = () => {
     if (stockCode) {
