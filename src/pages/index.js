@@ -77,6 +77,7 @@ const Carousel = () => {
     const items = slider.querySelectorAll('.item');
 
     function activate(e) {
+      console.log("Event triggered:", e.type);  // 檢查事件是否觸發
       if (e.target.matches('.next') && slider) {
         slider.append(items[0]);
       } else if (e.target.matches('.prev') && slider) {
@@ -84,9 +85,6 @@ const Carousel = () => {
       }
     }
 
-  //   slider.addEventListener('click', activate);
-  //   return () => slider.removeEventListener('click', activate);
-  // }, []);
 
   slider.addEventListener('click', activate);
   slider.addEventListener('touchend', activate);  // 增加觸摸事件
