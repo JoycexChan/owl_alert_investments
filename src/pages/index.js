@@ -126,18 +126,20 @@ const Carousel = () => {
           </li>
         ))}
       </ul>
+
       <div className={styles.controls}>
         <button className="prev" onClick={() => { const slider = sliderRef.current; slider.prepend(slider.lastChild); }}>
-          <svg viewBox="0 0 512 512" width="32" height="32" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-            <path d="M328 112L184 256l144 144M200 256H392"></path>
+        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512" style={{ transform: "scaleX(-1)" }}>
+          <path d="M12,0C5.383,0,0,5.383,0,12s5.383,12,12,12,12-5.383,12-12S18.617,0,12,0Zm5.629,12.896l-4.629,4.236v-4.132H6v-2h7V7l4.629,4.236c.494,.443,.494,1.217,0,1.66Z" fill="black" fillOpacity="0.5"/>
           </svg>
         </button>
         <button className="next" onClick={() => { const slider = sliderRef.current; slider.append(slider.firstChild); }}>
-          <svg viewBox="0 0 512 512" width="32" height="32" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-            <path d="M184 112l144 144-144 144M328 256H136"></path>
+        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512">
+        <path d="M12,0C5.383,0,0,5.383,0,12s5.383,12,12,12,12-5.383,12-12S18.617,0,12,0Zm5.629,12.896l-4.629,4.236v-4.132H6v-2h7V7l4.629,4.236c.494,.443,.494,1.217,0,1.66Z" fill="black" fillOpacity="0.5"/>
           </svg>
         </button>
       </div>
+
     </main>
   );
 };
