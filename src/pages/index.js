@@ -13,7 +13,7 @@ const Carousel = () => {
 
   const slides = [
     {
-      img: '/images/web3.jpg',
+      img: '/images/red.jpg',
       title: '加入我們',
       description: '立即註冊，開始你的投資旅程。',
       link: '/01register',
@@ -21,14 +21,14 @@ const Carousel = () => {
       hasSearch: false // 其他 slide 不需要搜尋框
     },
     {
-      img: '/images/web1.jpg',
+      img: '/images/orange.jpg',
       title: '金訊鴞',
       description: '尋找你的最佳投資，發掘你的生活，高效的股票搜索工具，最佳的選股助手',
       link: '/stock-analysis',
       hasSearch: true // 只有這個 slide 需要搜尋框，且不需要按鈕
     },
     {
-      img: '/images/web2.jpg',
+      img: '/images/yellow.jpg',
       title: '精選清單',
       description: '發現潛力無限的轉機股，及早參與進取。',
       link: '/stock-picking',
@@ -36,7 +36,7 @@ const Carousel = () => {
       hasSearch: false // 其他 slide 不需要搜尋框
     },
     {
-      img: '/images/web3.jpg',
+      img: '/images/purple.jpg',
       title: '加入我們',
       description: '立即註冊，開始你的投資旅程。',
       link: '/01register',
@@ -44,7 +44,7 @@ const Carousel = () => {
       hasSearch: false // 其他 slide 不需要搜尋框
     },
     {
-      img: '/images/web1.jpg',
+      img: '/images/blue.jpg',
       title: '尋找你的最佳投資，發掘你的生活',
       description: '高效的股票搜索工具，最佳的選股助手',
       link: '/stock-analysis',
@@ -52,7 +52,7 @@ const Carousel = () => {
     },
 
     {
-      img: '/images/web2.jpg',
+      img: '/images/indigo.jpg',
       title: '精選清單',
       description: '發現潛力無限的轉機股，及早參與進取。',
       link: '/stock-picking',
@@ -61,7 +61,7 @@ const Carousel = () => {
     },
 
   ];
-
+// 312312
   useEffect(() => {
           // 在組件載入時請求通知權限
           if (typeof window !== "undefined" && typeof Notification !== "undefined") {

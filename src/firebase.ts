@@ -4,6 +4,7 @@
 import { initializeApp, getApps, FirebaseApp } from "firebase/app";
 import { getFirestore, Firestore } from "firebase/firestore";
 import { getMessaging, getToken, onMessage, Messaging} from "firebase/messaging";
+import { storeNotification } from './services/notificationService';  // 導入 storeNotification 函數
 
 //  Firebase 配置
 const firebaseConfig = {
@@ -68,6 +69,14 @@ if (typeof window !== "undefined" && typeof navigator !== "undefined") {
         body: payload.notification?.body || 'No body',
         icon: '/firebase-logo.png'
       };
+
+      // 儲存通知到 Firestore
+      if (payload.notification && payload.notification.title && payload.notification.body) {
+        storeNotification({
+          title: payload.notification.title,
+          body: payload.notification.body
+        });
+      }
 
       // 使用瀏覽器內建的通知 API
       if (Notification.permission === 'granted') {

@@ -1,5 +1,5 @@
 // notificationService.ts
-import { db } from '../firebase';
+import { db } from '../firebase'; // 確保這個路徑相對於 notificationService.ts 位置正確
 import { doc, updateDoc, deleteDoc, collection, addDoc, getDocs, query, orderBy, Timestamp } from 'firebase/firestore';
 
 
@@ -23,28 +23,28 @@ export interface Notification {
     id: string;
     title: string;
     body: string;
-    timestamp: Date;  // 將 Timestamp 改為 Date
+    timestamp: Timestamp;  
     read: boolean;
 }
 
-// 加載通知時確保 Timestamp 轉為 Date
+
+// 使用明確類型的函數來加載通知
 export const loadNotifications = async (): Promise<Notification[]> => {
     const notificationsQuery = query(collection(db, 'notifications'), orderBy('timestamp', 'desc'));
     const querySnapshot = await getDocs(notificationsQuery);
     const notifications: Notification[] = [];
     querySnapshot.forEach((doc) => {
-        const data = doc.data() as any; // 使用 any 無法得知確切結構，需要手動確保結構正確
+        const data = doc.data() as Notification; // 确保这里的类型转换正确
         notifications.push({
             id: doc.id,
             title: data.title,
             body: data.body,
-            timestamp: (data.timestamp as Timestamp).toDate(),  // 轉換 Timestamp 為 Date
+            timestamp: data.timestamp,
             read: data.read
         });
     });
     return notifications;
 };
-
 
 //标记为已读和删除通知的功能
 export const markAsRead = async (notificationId: string) => {

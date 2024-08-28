@@ -1,33 +1,27 @@
 // src/pages/api/fetchTopTurnaroundStocks.ts
+// src/pages/api/fetchTopTurnaroundStocks.ts
 import { NextApiRequest, NextApiResponse } from 'next';
 import firebaseAdmin from '../../firebaseAdmin';
 
 const db = firebaseAdmin.firestore();
 
-interface StockData {
-  stock_id: string;
-  f_score: number;
-  pb_ratio: number;
-}
-
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const snapshot = await db.collection('TurnaroundStocks').get();
-    const stocks: StockData[] = [];
+    const stocksRef = db.collection('TurnaroundStocks');
+    const filteredStocksQuery = stocksRef
+      .where('f_score', '>=', 8)
+      .where('pb_ratio', '<=', 3)
+      .orderBy('f_score', 'desc')
+      .orderBy('pb_ratio', 'asc')
+      .limit(20);
 
-    snapshot.forEach((doc) => {
-      const data = doc.data() as StockData;
-      if (data.f_score >= 8 && data.pb_ratio <= 3) {
-        stocks.push(data);
-      }
-    });
+    const querySnapshot = await filteredStocksQuery.get();
+    const stocks = querySnapshot.docs.map(doc => doc.data());
 
-    // 排序並只保留前五十名
-    stocks.sort((a, b) => a.pb_ratio - b.pb_ratio);
-    const topStocks = stocks.slice(0, 50);
-
-    res.status(200).json(topStocks);
+    res.status(200).json(stocks);
   } catch (error) {
+    console.error("Error fetching data from Firestore:", error);
     res.status(500).json({ error: 'Error fetching data' });
   }
 };
+

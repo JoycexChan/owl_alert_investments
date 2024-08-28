@@ -49,17 +49,14 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const register = async (email, password) => {
-    const auth = getAuth(app); // 確保在函數中初始化 auth
     await createUserWithEmailAndPassword(auth, email, password);
   };
 
   const login = async (email, password) => {
-    const auth = getAuth(app); // 確保在函數中初始化 auth
     await signInWithEmailAndPassword(auth, email, password);
   };
 
   const logout = async () => {
-    const auth = getAuth(app); // 確保在函數中初始化 auth
     try {
       await signOut(auth);
       setUser(null); // 更新應用狀態，設置用戶為 null

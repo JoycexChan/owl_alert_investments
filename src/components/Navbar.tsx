@@ -4,7 +4,8 @@ import { useRouter } from 'next/router';
 import { useAuth } from '../context/AuthContext';
 import styles from '../styles/Navbar.module.css';
 
-
+import { NotificationProvider } from '../context/NotificationContext';
+import NotificationList from '../components/NotificationList';
 
 const Navbar = () => {
     const router = useRouter();
@@ -30,13 +31,23 @@ const Navbar = () => {
         <nav className={styles.navbar}>
 
             <ul className={styles.navLinks}>
-                <li><Link href="/">首頁</Link></li>
+            <li>
+                    <Link href="/" passHref>
+                        <img src="/images/oai-icon.png" alt="首頁" className={styles.homeIcon} />
+                    </Link>
+                </li>
                 <li><Link href="/stock-analysis?code=2330">個股</Link></li>
                 <li><Link href="/stock-picking">精選清單</Link></li>
                 {/* <li><Link href="/compare">比較</Link></li> */}
                 {user && <li><Link href="/01member">收藏匣</Link></li>}
             </ul>
-            
+            {/* <NotificationProvider>
+        <div className="App">
+            <h1>Welcome to the Notification System</h1>
+            <NotificationList />
+        </div>
+
+    </NotificationProvider> */}
             <div className={styles.actions}>
                 {/* 搜尋框 */}
                 <div className={styles.searchBox}>
