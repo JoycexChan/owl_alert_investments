@@ -1,6 +1,6 @@
 // pages/api/stockPrice.js
 
-import { getStockPrice } from '../../lib/stockService'; 
+import { getCurrentStockPrice } from '../../lib/stockService'; 
 
 export default async function handler(req, res) {
     const { stockCode } = req.query;
@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     }
 
     try {
-        const price = await getStockPrice(stockCode);
+        const price = await getCurrentStockPrice(stockCode);
         res.status(200).json({ stockCode, price });
     } catch (error) {
         res.status(500).json({ error: 'Error fetching stock price' });

@@ -43,7 +43,7 @@ const NotificationList = () => {
                     <li key={notification.id} style={{ background: notification.read ? '#f0f0f0' : '#fff' }}>
                         <p>{notification.title}</p>
                         <p>{notification.body}</p>
-                        <p>Received at: {notification.timestamp.toLocaleString()}</p>  // 確認 timestamp 是 Date 類型
+                        <p>Received at: {notification.timestamp.toLocaleString()}</p>  
                         <button onClick={() => markAsRead(notification.id)}>Mark as Read</button>
                         <button onClick={() => deleteNotification(notification.id)}>Delete</button>
                     </li>

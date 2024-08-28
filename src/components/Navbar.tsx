@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useAuth } from '../context/AuthContext';
 import styles from '../styles/Navbar.module.css';
-
+import Image from 'next/image';
 import { NotificationProvider } from '../context/NotificationContext';
 import NotificationList from '../components/NotificationList';
 
@@ -33,7 +33,7 @@ const Navbar = () => {
             <ul className={styles.navLinks}>
             <li>
                     <Link href="/" passHref>
-                        <img src="/images/oai-icon.png" alt="首頁" className={styles.homeIcon} />
+                        <Image src="/images/oai-icon.png" alt="首頁" width={48} height={48} className={styles.homeIcon} />
                     </Link>
                 </li>
                 <li><Link href="/stock-analysis?code=2330">個股</Link></li>
