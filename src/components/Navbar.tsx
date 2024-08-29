@@ -2,25 +2,49 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useAuth } from '../context/AuthContext';
+import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
 import styles from '../styles/Navbar.module.css';
 import Image from 'next/image';
-import { NotificationProvider } from '../context/NotificationContext';
-import NotificationList from '../components/NotificationList';
+
+interface Stock {
+    stock_id: string;
+    stock_name: string;
+}
 
 const Navbar = () => {
     const router = useRouter();
     const { user, logout } = useAuth();
-    const [stockCode, setStockCode] = useState(''); // 用來儲存輸入的台股代碼
+    const [stockCode, setStockCode] = useState('');
+    const [stocks, setStocks] = useState<Stock[]>([]);
+    const db = getFirestore();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const handleRegister = () => {
-        router.push('/sign_in');
-    };
+    useEffect(() => {
+        if (stockCode.length > 1) {
+            const fetchStocks = async () => {
+                const q = query(collection(db, "StocksDirectory"), where("stock_id", ">=", stockCode), where("stock_id", "<=", stockCode + '\uf8ff'));
+                const querySnapshot = await getDocs(q);
+                const stocksArray: Stock[] = [];
+                querySnapshot.forEach(doc => {
+                    stocksArray.push(doc.data() as Stock);
+                });
+                setStocks(stocksArray);
+            };
+            fetchStocks();
+        } else {
+            setStocks([]);
+        }
+    }, [stockCode, db]);
 
-    const handleLogout = () => {
-        logout();
-        router.push('/');
-    };
+    useEffect(() => {
+        const handleOutsideClick = (event: MouseEvent) => {
+            if (event.target instanceof Element && isMenuOpen && !event.target.closest(`.${styles.navModal}`)) {
+                setIsMenuOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleOutsideClick);
+        return () => document.removeEventListener('mousedown', handleOutsideClick);
+    }, [isMenuOpen]);
 
     const handleSearch = () => {
         if (stockCode) {
@@ -28,52 +52,22 @@ const Navbar = () => {
         }
     };
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
-
-    const closeModal = () => {
-        setIsMenuOpen(false);
-    };
-
-    useEffect(() => {
-        const handleOutsideClick = (event: MouseEvent) => {
-            // 確認 event.target 是 Element 的實例
-            if (event.target instanceof Element && isMenuOpen && !event.target.closest(`.${styles.navModal}`)) {
-                closeModal();
-            }
-        };
-    
-        document.addEventListener('mousedown', handleOutsideClick);
-        return () => document.removeEventListener('mousedown', handleOutsideClick);
-    }, [isMenuOpen]);
-    
-    
-
     return (
         <nav className={styles.navbar}>
+            {/* Existing navbar content */}
             <div className={styles.menuButton}>
-                <Image
-                    src="/images/oai-icon.png" 
-                    alt="Menu"
-                    width={44} // 設定圖片寬度
-                    height={44} // 設定圖片高度
-                    onClick={toggleMenu}
-                    style={{ cursor: 'pointer' }} // 添加指針手型指標以指示可以點擊
-                    className={styles.homeIcon}
-                />
+                <Image src="/images/oai-icon.png" alt="Menu" width={44} height={44} onClick={() => setIsMenuOpen(!isMenuOpen)} className={styles.homeIcon} />
             </div>
             <div className={`${styles.navModal} ${isMenuOpen ? styles.active : ''}`}>
-                
-            <ul>
-                    <li onClick={toggleMenu}><Link href="/">首頁</Link></li>
-                    <li onClick={toggleMenu}><Link href="/stock-analysis?code=2330">個股</Link></li>
-                    <li onClick={toggleMenu}><Link href="/stock-picking">精選清單</Link></li>
-                    {user && <li onClick={toggleMenu}><Link href="/member">收藏匣</Link></li>}
+                <ul>
+                    <li onClick={() => setIsMenuOpen(false)}><Link href="/">首頁</Link></li>
+                    <li onClick={() => setIsMenuOpen(false)}><Link href="/stock-analysis?code=2330">個股</Link></li>
+                    <li onClick={() => setIsMenuOpen(false)}><Link href="/stock-picking">精選清單</Link></li>
+                    {user && <li onClick={() => setIsMenuOpen(false)}><Link href="/member">收藏匣</Link></li>}
                 </ul>
             </div>
 
-
+            
             <ul className={`${styles.navLinks} ${isMenuOpen ? styles.hide : ''}`}>
                 <li>
                     <Link href="/" passHref>
@@ -86,36 +80,30 @@ const Navbar = () => {
             </ul>
 
             <div className={styles.actions}>
-                {/* 搜尋框 */}
-                <div className={styles.searchBox}>
-                    <input 
-                        type="text" 
-                        placeholder="輸入台股代碼" 
-                        value={stockCode} 
-                        onChange={(e) => setStockCode(e.target.value)} 
-                        className={styles.searchInput}
-                    />
-                    <button 
-                        onClick={handleSearch} 
-                        className={styles.searchButton}
-                    >
-                        搜尋
-                    </button>
+            <div className={styles.searchBox}>
+                <input 
+                    type="text"
+                    placeholder="輸入台股代碼"
+                    value={stockCode}
+                    onChange={(e) => setStockCode(e.target.value)}
+                    className={styles.searchInput}
+                />
+                <div className={styles.searchResults}>
+                    {stocks.map(stock => (
+                        <div key={stock.stock_id} onClick={() => { setStockCode(stock.stock_id); handleSearch(); }}>
+                            {stock.stock_id} {stock.stock_name}
+                        </div>
+                    ))}
                 </div>
-                
-                {user ? (
-                    <button
-                        onClick={handleLogout}
-                        className={styles.logoutButton}>
-                        登出系統
+                <button onClick={handleSearch} className={styles.searchButton}>搜尋
                     </button>
-                ) : (
-                    <button
-                        onClick={handleRegister}
-                        className={styles.registerButton}>
-                        登入
-                    </button>
-                )}
+            </div>
+            
+            {user ? (
+                <button onClick={logout} className={styles.logoutButton}>登出系統</button>
+            ) : (
+                <button onClick={() => router.push('/sign_in')} className={styles.registerButton}>登入</button>
+            )}
             </div>
         </nav>
     );

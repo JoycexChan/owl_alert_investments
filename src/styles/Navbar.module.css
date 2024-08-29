@@ -1,3 +1,39 @@
+/* 添加到你的 CSS 文件中 */
+
+
+.searchResults {
+    
+    position: absolute;
+    top: 100%; /* 使其位于搜索框的正下方 */
+    left: 0;
+    width: 30vw; /* 让下拉框的宽度与搜索框相同 */
+    background-color: white;
+
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000; /* 确保下拉框位于其他内容之上 */
+    max-height: 300px;
+    overflow-y: auto; /* 超出部分显示滚动条 */
+}
+
+
+.searchItem {
+    padding: 8px 12px;        /* 每个项目的内边距 */
+    cursor: pointer;          /* 鼠标悬停时的指针形状 */
+    border-bottom: 1px solid #eee; /* 分隔线 */
+}
+
+.searchItem:last-child {
+    border-bottom: none;      /* 最后一项不需要分隔线 */
+}
+
+.searchItem:hover {
+    background-color: #f9f9f9; /* 悬停时的背景色 */
+}
+
+
+
+
+
 .homeIcon {
     width: 44px; 
     height: auto;
@@ -46,6 +82,8 @@
 }
 
 .searchBox {
+position: relative; /* 这确保了下拉框将相对于此容器定位 */
+
     display: flex;
     align-items: center;
     margin-right: 0rem;
