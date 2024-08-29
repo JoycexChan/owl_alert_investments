@@ -3,7 +3,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Link from 'next/link'; 
 import { useRouter } from 'next/router';
-import styles from '../styles/Carousel2.module.css';
+import styles from '../styles/Carousel.module.css';
 // 導入 Firebase 初始化和 FCM 設定
 import '../firebase'; // 假設 firebase 設定檔案是 firebase.ts
 const Carousel = () => {
@@ -116,13 +116,17 @@ const Carousel = () => {
 
               {slide.hasSearch ? (
                 <div className={styles.searchBox}>
+                  <div>
                   <input 
                     type="text" 
                     placeholder="輸入台股代碼" 
                     value={stockCode} 
                     onChange={(e) => setStockCode(e.target.value)} 
                   />
+                  </div>
+                  <div>
                   <button onClick={handleSearch}>搜尋</button>
+                  </div>
                 </div>
               ) : (
                 <Link href={slide.link}>
