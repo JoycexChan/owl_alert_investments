@@ -12,9 +12,9 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
-import StockPriceChecker from "../components/01StockPriceChecker";
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import StockPriceChecker from "../components/StockPriceChecker";
+
+import styles from '../styles/MemberPage.module.css';  // 確保導入對應的 CSS 模組
 
 export default function MemberPage() {
   const { user } = useAuth();
@@ -23,24 +23,41 @@ export default function MemberPage() {
   const [stocks, setStocks] = useState([]);
   const [alertPrice, setAlertPrice] = useState("");
   const [loading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(""); // 新增一個狀態來處理錯誤訊息
 
   const fetchStocks = useCallback(async () => {
     if (!user) return;
     try {
       const q = query(collection(db, "stocks"), where("userId", "==", user.uid));
       const querySnapshot = await getDocs(q);
-      const stockList = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setStocks(stockList);
+      const stocksWithNames = [];
+  
+      for (const doc of querySnapshot.docs) {
+        const stockData = doc.data();
+        const stockId = stockData.stockCode.slice(0, 4); // 取得股票代碼前四碼
+  
+        // 查詢 StocksDirectory 中的股票名稱
+        const stockQuery = query(collection(db, "StocksDirectory"), where("stock_id", "==", stockId));
+        const stockNameSnapshot = await getDocs(stockQuery);
+        const stockName = stockNameSnapshot.docs.length > 0 ? stockNameSnapshot.docs[0].data().stock_name : "未知股票名稱";
+  
+        stocksWithNames.push({
+          id: doc.id,
+          stockCode: stockData.stockCode,
+          stockName: stockName, // 添加股票名稱
+          alertPrice: stockData.alertPrice
+        });
+      }
+  
+      setStocks(stocksWithNames);
     } catch (error) {
       console.error("Error fetching stocks:", error);
+      setErrorMessage("Failed to fetch stocks."); // 設置錯誤訊息
     } finally {
       setLoading(false);
     }
   }, [user]);
-
+  
   useEffect(() => {
     if (!user) {
       router.push("/");
@@ -50,39 +67,39 @@ export default function MemberPage() {
   }, [user, fetchStocks, router]);
 
   const handleAddStock = async () => {
-    if (!stockCode || !alertPrice || !user) return;
+    if (!stockCode || !alertPrice || !user) {
+      setErrorMessage("Please fill all fields.");  // 確保輸入字段完整性的錯誤訊息
+      return;
+    }
     
     try {
-        // 檢查是否已經存在該股票代碼
-        const q = query(
-            collection(db, "stocks"),
-            where("userId", "==", user.uid),
-            where("stockCode", "==", `${stockCode}.TW`)
-        );
-        const querySnapshot = await getDocs(q);
-        
-        if (querySnapshot.size > 0) {
-            // 已存在該股票代碼，更新該記錄
-            const existingStockDoc = querySnapshot.docs[0];
-            await deleteDoc(doc(db, "stocks", existingStockDoc.id));
-        }
-        
-        // 創建新記錄或更新現有記錄
-        await addDoc(collection(db, "stocks"), {
-            userId: user.uid,
-            stockCode: `${stockCode}.TW`, // 假設需要添加 `.TW`
-            alertPrice: parseFloat(alertPrice),
-            currentPrice: 0,
-        });
-        
-        setStockCode("");
-        setAlertPrice("");
-        fetchStocks();
+      const q = query(
+          collection(db, "stocks"),
+          where("userId", "==", user.uid),
+          where("stockCode", "==", `${stockCode}.TW`)
+      );
+      const querySnapshot = await getDocs(q);
+      
+      if (querySnapshot.size > 0) {
+          const existingStockDoc = querySnapshot.docs[0];
+          await deleteDoc(doc(db, "stocks", existingStockDoc.id));
+      }
+      
+      await addDoc(collection(db, "stocks"), {
+          userId: user.uid,
+          stockCode: `${stockCode}.TW`, 
+          alertPrice: parseFloat(alertPrice),
+          currentPrice: 0,  // 假設 currentPrice 也是需要的信息
+      });
+      
+      setStockCode("");
+      setAlertPrice("");
+      fetchStocks();
     } catch (error) {
-        console.error("Error adding stock:", error);
+      console.error("Error adding stock:", error);
+      setErrorMessage("Failed to add stock.");  // 處理新增股票時的錯誤訊息
     }
-};
-
+  };
 
   const handleDeleteStock = async (id) => {
     try {
@@ -90,17 +107,50 @@ export default function MemberPage() {
       setStocks(stocks => stocks.filter(stock => stock.id !== id));
     } catch (error) {
       console.error("Error deleting stock:", error);
+      setErrorMessage("Failed to delete stock.");  // 處理刪除股票時的錯誤訊息
     }
   };
 
+
+  
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div>
-      <Navbar />
-      <h1>會員股票追蹤</h1>
-      <div>
+    <div className={styles.wrapperout}>
+    <div className={styles.wrappero}>
+    <div className={styles.pageContainer}>
+
+      <div className={styles.titleContainer}>會員股票追蹤</div>
+      {errorMessage && <div className={styles.error}>{errorMessage}</div>}
+      <div className={styles.stockListout}>
+      <div className={styles.stockListHeader}>
+        <span>名稱</span>
+        <span>代碼</span>
+        <span>股價</span>
+        <span>提醒</span>
+        <span>操作</span>
+      </div>
+      {stocks.length > 0 ? (
+        <div className={styles.stockList}>
+          {stocks.map((stock) => (
+            <div key={stock.id} className={styles.stockItem}>
+              <span>{stock.stockName}</span>
+              <span>{stock.stockCode.slice(0, 4)}</span> {/* 只顯示前四個字符 */}
+              <StockPriceChecker symbol={stock.stockCode} alertPrice={stock.alertPrice} />
+              <span>{stock.alertPrice}</span>
+              <button onClick={() => handleDeleteStock(stock.id)}>刪除</button>
+            </div>
+          ))}
+
+
+        </div>
+      ) : (
+        <div className={styles.noStocksMessage}>No stocks added yet.</div>
+      )}
+      </div>
+        <div className={styles.inputContainer}>
         <input
+          className={styles.inputField}
           type="text"
           placeholder="輸入股票代碼"
           value={stockCode}
@@ -108,6 +158,7 @@ export default function MemberPage() {
           disabled={!user}
         />
         <input
+          className={styles.inputField}
           type="number"
           placeholder="提醒價格"
           value={alertPrice}
@@ -118,19 +169,9 @@ export default function MemberPage() {
           新增股票
         </button>
       </div>
-      <h2>已追蹤股票</h2>
-      <ul>
-        {stocks.map((stock) => (
-          <li key={stock.id}>
-            <div>
-              股票代碼: {stock.stockCode}, 提醒價格: {stock.alertPrice}
-              <StockPriceChecker symbol={stock.stockCode} />
-              <button onClick={() => handleDeleteStock(stock.id)}>刪除</button>
-            </div>
-          </li>
-        ))}
-      </ul>
-      <Footer />
+
+    </div>
+    </div>
     </div>
   );
 }

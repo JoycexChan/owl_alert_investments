@@ -1,0 +1,112 @@
+ /* styles/MemberPage.module.css */
+ .wrapperout{
+
+  width: 100vw;
+  display: flex;         /* 啟用 flexbox */
+  justify-content: center; /* 水平置中 */
+}
+
+.wrapper{
+
+  margin-top: 80px;
+  display: flex;         /* 啟用 flexbox */
+  justify-content: center; /* 水平置中 */
+  align-items: center;     /* 垂直置中 */
+  flex-direction: column;  /* 元素垂直堆疊 */
+  text-align: center;      /* 文本居中對齊 */
+  width: 100vw;
+  max-width: 480px;
+
+}
+
+
+
+.pageContainer {
+  margin: 30px;
+margin-top: 100px;
+
+  display: flex;         /* 啟用 flexbox */
+  flex-direction: column;  /* 元素垂直堆疊 */
+  justify-content: center; /* 水平置中 */
+  align-items: center;     /* 垂直置中 */
+
+
+  border-radius: 0.25rem;
+  padding: 20px;
+  background-color: aliceblue;
+  text-align: center;
+
+  width: 90%;
+  max-width: 480px;
+}
+
+.titleContainer {
+  width: 90%;
+  padding: 20px;
+  background: linear-gradient(230deg, #0386F4 63%, #2AA99E 14%);
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+
+
+.stockListout {
+  display: flex;         /* 啟用 flexbox */
+  flex-direction: column;  /* 元素垂直堆疊 */
+  justify-content: center;
+
+
+}
+
+
+
+.stockListHeader {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
+  width: 100%;
+  background-color: #0386F4;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.stockItem {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  width: 100%;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: space-between;
+margin: 10px;
+height: 30px;
+}
+
+.inputField {
+  flex: 1;
+  margin-right: 10px;
+  height: 30px;
+  width: 15vw;
+  border-radius: 0.25rem;
+  padding: 10px;
+  min-width: 100px;
+}
+
+.inputContainer  button{
+width: 70px;
+height: 30px;
+  margin-bottom: 20px;
+  border-radius: 0.25rem;
+  color: #ffffff;
+  background-color: #2AA99E;
+}

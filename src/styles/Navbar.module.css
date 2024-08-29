@@ -2,7 +2,7 @@
 
 
 .searchResults {
-    
+    border-radius: 0.25rem;
     position: absolute;
     top: 100%; /* 使其位于搜索框的正下方 */
     left: 0;
