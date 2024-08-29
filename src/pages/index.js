@@ -16,7 +16,7 @@ const Carousel = () => {
       img: '/images/red.jpg',
       title: '加入我們',
       description: '立即註冊，開始你的投資旅程。',
-      link: '/01register',
+      link: '/sing_in',
       buttonname: 'Read More',
       hasSearch: false // 其他 slide 不需要搜尋框
     },

@@ -14,7 +14,7 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const handleRegister = () => {
-        router.push('/01register');
+        router.push('/sign_in');
     };
 
     const handleLogout = () => {
@@ -69,7 +69,7 @@ const Navbar = () => {
                     <li onClick={toggleMenu}><Link href="/">首頁</Link></li>
                     <li onClick={toggleMenu}><Link href="/stock-analysis?code=2330">個股</Link></li>
                     <li onClick={toggleMenu}><Link href="/stock-picking">精選清單</Link></li>
-                    {user && <li onClick={toggleMenu}><Link href="/01member">收藏匣</Link></li>}
+                    {user && <li onClick={toggleMenu}><Link href="/member">收藏匣</Link></li>}
                 </ul>
             </div>
 
@@ -82,7 +82,7 @@ const Navbar = () => {
                 </li>
                 <li><Link href="/stock-analysis?code=2330">個股</Link></li>
                 <li><Link href="/stock-picking">精選清單</Link></li>
-                {user && <li><Link href="/01member">收藏匣</Link></li>}
+                {user && <li><Link href="/member">收藏匣</Link></li>}
             </ul>
 
             <div className={styles.actions}>
@@ -113,7 +113,7 @@ const Navbar = () => {
                     <button
                         onClick={handleRegister}
                         className={styles.registerButton}>
-                        免費註冊
+                        登入
                     </button>
                 )}
             </div>

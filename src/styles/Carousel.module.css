@@ -118,6 +118,7 @@
 
   height: 35vh;
   width: 90%;
+
   position: absolute;
   top: 50%;
   left: 50%; 
@@ -320,7 +321,7 @@ align-items: center;
 
   .slide {
     width: 15vw;
-    height: 30vw;
+    height: 25vw;
 
   &:nth-child(3) {
     left: calc(var(--x-off) + 60%);
@@ -348,6 +349,7 @@ align-items: center;
     height: 20vw;
     width: 50%;
     min-height: 250px;
+    max-width: 600px;
     position: absolute;
     top: 50%;
     left: 5%;
