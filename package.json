@@ -10,6 +10,7 @@
     "build-sw": "webpack"
   },
   "dependencies": {
+    "@grpc/grpc-js": "^1.11.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
     "@types/plotly.js": "^2.33.3",
     "axios": "^1.7.3",
