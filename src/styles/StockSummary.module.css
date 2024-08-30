@@ -6,7 +6,8 @@
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-right: 20px;
+    width: 100%;
 }
 
 .stockInfo {
@@ -47,3 +48,11 @@
     background-color: #bbb;
     cursor: not-allowed;
 }
+
+.EnhancedKLineChart {
+    width: 100%; /* 設置寬度為100%以適應父容器 */
+    max-width: 100%; /* 確保最大寬度不超過容器 */
+    height: auto; /* 讓高度自動調整 */
+    overflow: hidden; /* 隱藏任何溢出的內容 */
+  }
+  

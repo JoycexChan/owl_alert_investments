@@ -63,69 +63,35 @@ const RevenueChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
   const revenues = revenueData.map(item => item.revenue);
 
   return (
-    <div style={{ width: '100%', backgroundColor:'white', marginTop:'10px', height: '490px', fontSize:'0.5rem', padding:'30px'}}>
-
     <Plot
       data={[
         {
           x: dates,
           y: revenues,
           type: 'scatter',
-          mode: 'lines', // Removing markers, only showing lines
+          mode: 'lines+markers',
           line: { color: 'blue' },
-          name: 'Revenue',
+          name: '營收',
         },
         {
           x: dates,
           y: monthlyAverage,
           type: 'scatter',
-          mode: 'lines', // Removing markers, only showing lines
+          mode: 'lines',
           line: { color: 'orange' },
-          name: 'Monthly Average',
+          name: '月均線',
         },
       ]}
       layout={{
-        title: `${stockCode} Monthly Revenue Trend`,
-        xaxis: {
-          title: 'Time (year)',
-          type: 'date',
-          showgrid: false,
-          showline: true,
-          linewidth: 1,
-          linecolor: 'black',
-          mirror: true,
-          
-        },
-        yaxis: {
-          title: 'Revenue (thousands)',
-          autorange: true,
-          showgrid: false,
-          showline: true,
-          linewidth: 1,
-          linecolor: 'black',
-          mirror: true,
-        },
+        title: `${stockCode} 每月營收趨勢`,
+        xaxis: { title: '時間' },
+        yaxis: { title: '營收 (千元)', autorange: true },
         showlegend: true,
-        legend: {
-          x: 0,         // Legend position on x-axis (left side of the graph area)
-          y: 1,         // Legend position on y-axis (top of the graph area)
-          xanchor: 'left',
-          yanchor: 'top',
-        },
-        plot_bgcolor: 'transparent', // Set plot background color
-        paper_bgcolor: 'transparent', // Set paper background color
-        margin: { t: 40, r: 40, b: 40, l: 40 }, // Adjust the margin to prevent clipping
-        grid: { rows: 1, columns: 1 },
-        autosize: true,
-
       }}
-      useResizeHandler={true} /* 這一行確保圖表根據窗口大小自動調整 */
-      style={{ width: '100%', height: '100%' }} /* 設置圖表寬高 */
       config={{
-        displayModeBar: false,
+        displayModeBar: false, // 根據需要隱藏工具欄
       }}
     />
-    </div>
   );
 };
 

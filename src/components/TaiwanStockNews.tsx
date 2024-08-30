@@ -36,7 +36,7 @@ const TaiwanStockNews = ({ stockCode }: TaiwanStockNewsProps) => {
     }, [stockCode, selectedDate]);
 
     return (
-        <div>
+        <div style={{ width: '100%', backgroundColor:'white', marginTop:'10px', height: '490px', fontSize:'0.5rem', padding:'30px'}}>
             <h1>台股相關新聞</h1>
             <div>
                 <label>選擇日期: </label>

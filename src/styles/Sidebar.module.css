@@ -1,12 +1,22 @@
 .sidebar {
-    width: 200px;
+border-radius: 0.25rem;
+    width: 20vw;
     background-color: #f4f4f4;
     padding: 20px;
-
-    height: 50vh;
+margin-right: 10px;
+    height: 600px;
+    max-width: 200px;
     /* position: fixed; 
     left: 50px; 
     top: 100px;  */
+}
+
+.contentArea {
+    flex: 1; /* 填滿剩餘空間 */
+    overflow-y: auto; /* 當內容過多時啟用滾動條 */
+    padding: 20px; /* 給內容區域加一些內邊距 */
+    height: 80vh;
+
 }
 
 .sidebar ul {

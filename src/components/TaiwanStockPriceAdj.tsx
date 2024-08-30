@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Plot from 'react-plotly.js';
 import axios from 'axios';
 import dayjs from 'dayjs';
-import styles from '../styles/StockSummary.module.css';
+
 function getLastHalfYearRange() {
   const endDate = dayjs().format('YYYY-MM-DD');
   const startDate = dayjs().subtract(6, 'month').format('YYYY-MM-DD');
@@ -78,8 +78,6 @@ const EnhancedKLineChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
   const validMonthMADates = dates.slice(19, 19 + monthMA.length);
 
   return (
-
-    <div style={{ width: '100%', backgroundColor:'white', marginTop:'10px', height: '490px'}}>
     <Plot
       data={[
         {
@@ -129,15 +127,11 @@ const EnhancedKLineChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
         showlegend: true,
         grid: { rows: 1, columns: 1 },
       }}
-      useResizeHandler={true} /* 這一行確保圖表根據窗口大小自動調整 */
-      style={{ width: '100%', height: '100%' }} /* 設置圖表寬高 */
       config={{
         displayModeBar: false,
       }}
     />
-</div>
   );
-  
 };
 
 export default EnhancedKLineChart;

@@ -1,0 +1,15 @@
+.contentArea {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+
+  margin-top: 10px;
+}
+
+.stockSummary {
+  margin-bottom: 20px;
+}
+
+.taiwanStockIndicesChart, .revenueChart, .taiwanStockNews {
+  margin-top: 20px;
+}

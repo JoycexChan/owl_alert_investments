@@ -15,7 +15,7 @@
   flex-direction: column;  /* 元素垂直堆疊 */
   text-align: center;      /* 文本居中對齊 */
   width: 100vw;
-  max-width: 480px;
+  max-width: 800px;
 
 }
 
@@ -37,7 +37,7 @@ margin-top: 100px;
   text-align: center;
 
 
-  max-width: 480px;
+  max-width: 800px;
 }
 
 .titleContainer {
