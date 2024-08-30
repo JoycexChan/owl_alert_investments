@@ -1,3 +1,4 @@
+// src/pages/stock-picking.tsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -13,7 +14,7 @@ const StockPicking = () => {
   useEffect(() => {
     const fetchStocks = async () => {
       try {
-        const response = await axios.get('/api/fetchTop20Stocks'); // 確保這裡的 URL 指向新的 API 端點
+        const response = await axios.get('/api/fetchTopTurnaroundStocks');
         setStocks(response.data);
       } catch (error) {
         console.error('Error fetching stocks:', error);
