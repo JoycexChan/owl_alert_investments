@@ -1,19 +1,13 @@
 // pages/api/stockPrice.js
-
-import { getCurrentStockPrice } from '../../lib/stockService'; 
+import yahooFinance from 'yahoo-finance2';
 
 export default async function handler(req, res) {
-    const { stockCode } = req.query;
-
-    if (!stockCode) {
-        res.status(400).json({ error: 'Stock code is required' });
-        return;
-    }
-
-    try {
-        const price = await getCurrentStockPrice(stockCode);
-        res.status(200).json({ stockCode, price });
-    } catch (error) {
-        res.status(500).json({ error: 'Error fetching stock price' });
-    }
+  const { symbol } = req.query;
+  try {
+    const quote = await yahooFinance.quote(symbol);
+    res.status(200).json({ price: quote.regularMarketPrice });
+  } catch (error) {
+    console.error("Error fetching stock price:", error);
+    res.status(500).json({ error: 'Failed to fetch stock price' });
+  }
 }

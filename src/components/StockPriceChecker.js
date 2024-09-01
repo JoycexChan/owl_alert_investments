@@ -8,7 +8,7 @@ export default function StockPriceChecker({ symbol, alertPrice }) {
   useEffect(() => {
     const fetchStockPrice = async () => {
       // Assume the API responds with the stock price
-      const response = await fetch(`/api/01stockPrice?symbol=${encodeURIComponent(symbol)}`);
+      const response = await fetch(`/api/stockPrice?symbol=${encodeURIComponent(symbol)}`);
       const data = await response.json();
       setPrice(data.price);
       setLoading(false);
