@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     for (const stock of stocks) {
       const { stockCode, alertPrice, userId } = stock;
       try {
-        const response = await fetch(`https://owl-alert-investments.vercel.app/api/stockPrice?symbol=${encodeURIComponent(stockCode)}`);
+        const response = await fetch(`https://owl-alert-investments.vercel.app/api/01stockPrice?symbol=${encodeURIComponent(stockCode)}`);
         const data = await response.json();
 
         if (data.price > alertPrice) {
