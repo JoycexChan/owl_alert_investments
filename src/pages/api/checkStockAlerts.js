@@ -21,8 +21,11 @@ export default async function handler(req, res) {
             alertTriggered: true,
             lastChecked: new Date().toISOString()
           });
-          // 如果警報被觸發，發送通知
-          sendStockAlertNotification(userId, stockCode, data.price);
+          try {
+            await sendStockAlertNotification(userId, stockCode, data.price);
+          } catch (error) {
+            console.error(`Error sending notification for stock ${stockCode}:`, error);
+          }
         } else {
           await updateDoc(doc(db, "stocks", stock.id), {
             currentPrice: data.price,
@@ -30,6 +33,7 @@ export default async function handler(req, res) {
             lastChecked: new Date().toISOString()
           });
         }
+
       } catch (error) {
         console.error(`Error processing stock ${stockCode}:`, error);
       }
