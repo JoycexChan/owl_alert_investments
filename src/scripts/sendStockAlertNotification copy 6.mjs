@@ -7,19 +7,11 @@ import dotenv from 'dotenv';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// if (process.env.NODE_ENV !== 'development') {
-//     dotenv.config();
-// } else {
-//     dotenv.config({ path: path.resolve(__dirname, '../../.env.local') });
-// }
-
-dotenv.config({ path: path.resolve(__dirname, '../../.env.local') });
-
-console.log("Environment Variables:", {
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-    privateKey: process.env.FIREBASE_PRIVATE_KEY ? "Loaded" : "Not Loaded"
-});
+if (process.env.NODE_ENV !== 'development') {
+    dotenv.config();
+} else {
+    dotenv.config({ path: path.resolve(__dirname, '../../.env.local') });
+}
 
 
 // Initialize Firebase Admin
@@ -32,9 +24,6 @@ if (!admin.apps.length) {
         }),
         databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com`
     });
-    console.log("Firebase Admin initialized successfully.");
-} else {
-    console.log("Firebase Admin already initialized.");
 }
 
 async function sendStockAlertNotification(userId) {
@@ -63,7 +52,6 @@ async function sendStockAlertNotification(userId) {
     };
 
     try {
-        console.log("Sending notification...");
         const response = await admin.messaging().send(message);
         console.log(`Notification sent successfully to user ${userId}:`, response);
     } catch (error) {
@@ -73,6 +61,7 @@ async function sendStockAlertNotification(userId) {
         }
     }
 }
+
 
 export { sendStockAlertNotification };
 
