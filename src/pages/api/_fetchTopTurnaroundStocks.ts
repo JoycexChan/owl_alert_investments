@@ -1,6 +1,6 @@
 // src/pages/api/fetchTopTurnaroundStocks.ts
 import { NextApiRequest, NextApiResponse } from 'next';
-import firebaseAdmin from '../../firebaseAdmin';
+import firebaseAdmin from '../../firebaseAdmin.mjs';
 
 const db = firebaseAdmin.firestore();
 

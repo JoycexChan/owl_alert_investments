@@ -47,7 +47,7 @@ async function sendNotificationToUsers() {
                             Urgency: 'high'
                         },
                         fcm_options: {
-                            link: 'http://localhost:3002/'
+                            link: 'http://localhost:3000/'
                         }
                     }
                 }

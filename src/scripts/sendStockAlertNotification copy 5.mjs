@@ -21,7 +21,6 @@ if (!admin.apps.length) {
 }
 
 async function sendStockAlertNotification(userId) {
-    console.log(`Preparing to send notification to user ${userId}...`);
     const firestore = admin.firestore();
     const userDocRef = firestore.doc(`users/${userId}`);
     const userDoc = await userDocRef.get();
@@ -50,17 +49,13 @@ async function sendStockAlertNotification(userId) {
         console.log(`Notification sent successfully to user ${userId}:`, response);
     } catch (error) {
         console.error(`Error sending stock alert notification to user ${userId}:`, error);
-        if (error.errorInfo && error.errorInfo.code === 'messaging/registration-token-not-registered') {
-            console.log(`The token for user ${userId} is no longer valid and needs to be updated.`);
-        }
     }
 }
-
 
 export { sendStockAlertNotification };
 
 
 // 假設已有一個有效的用戶ID和股票代碼，以及一個觸發通知的價格
-// sendStockAlertNotification('GiKCudHVBeMq94Ejw1xV96YZZ6T2')
-//     .then(() => console.log("Notification test completed"))
-//     .catch((error) => console.error("Notification test failed", error));
+sendStockAlertNotification('GiKCudHVBeMq94Ejw1xV96YZZ6T2')
+    .then(() => console.log("Notification test completed"))
+    .catch((error) => console.error("Notification test failed", error));

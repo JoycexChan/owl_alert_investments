@@ -1,15 +1,9 @@
-// /src/utils/generateAccessToken.mjs
 import { JWT } from 'google-auth-library';
 import dotenv from 'dotenv';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-dotenv.config({ path: path.resolve(__dirname, '../../.env.local') });
-// 手動加載 .env.local
-// dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
-// dotenv.config({ path: 'C:/OAI_0814/owl_alert_investments/.env.local' });
+// 使用相對路徑加載 .env.local 文件
+dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
 
 async function generateAccessToken() {
     const client = new JWT(
@@ -21,7 +15,6 @@ async function generateAccessToken() {
     await client.authorize();
     return client.getAccessToken();
 }
-
 
 export { generateAccessToken };
 
