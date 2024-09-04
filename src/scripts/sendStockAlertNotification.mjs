@@ -78,6 +78,6 @@ export { sendStockAlertNotification };
 
 
 // 假設已有一個有效的用戶ID和股票代碼，以及一個觸發通知的價格
-// sendStockAlertNotification('GiKCudHVBeMq94Ejw1xV96YZZ6T2')
-//     .then(() => console.log("Notification test completed"))
-//     .catch((error) => console.error("Notification test failed", error));
+sendStockAlertNotification('GiKCudHVBeMq94Ejw1xV96YZZ6T2')
+    .then(() => console.log("Notification test completed"))
+    .catch((error) => console.error("Notification test failed", error));

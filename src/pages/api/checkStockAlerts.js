@@ -1,3 +1,4 @@
+// pages/api/checkStockAlerts.js
 import { db } from "../../firebase";
 import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
 import { sendStockAlertNotification } from '../../scripts/sendStockAlertNotification.mjs'; // 導入發送通知的函數
