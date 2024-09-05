@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { db } from "../firebase"; // 正确的相对路径
-import { useAuth } from "../context/AuthContext"; // 引入 AuthContext
-import { collection, addDoc } from "firebase/firestore"; // 引入 Firestore 的方法
+import { db } from "../firebase";
+import { useAuth } from "../context/AuthContext"; 
+import { collection, addDoc, query, where, getDocs } from "firebase/firestore"; 
+import dayjs from 'dayjs'; 
 import styles from '../styles/StockSummary.module.css';
 
 interface StockSummaryProps {
@@ -22,31 +23,39 @@ const StockSummary: React.FC<StockSummaryProps> = ({ stockCode }) => {
   const [stockData, setStockData] = useState<StockData | null>(null);
   const [isTracked, setIsTracked] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const { user } = useAuth(); // 获取当前用户
+  const { user } = useAuth(); 
   const token = process.env.NEXT_PUBLIC_FINMIND_API_TOKEN;
+  const today = dayjs().format('YYYY-MM-DD');
+  const startDate = dayjs().subtract(1, 'month').format('YYYY-MM-DD');
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchStockData = async () => {
+      setLoading(true);  // 開始加載時設置為 true
       try {
-        setError(null); // 清除之前的错误状态
+        setError(null); // 清除之前的錯誤狀態
 
-        // 先获取股票名称
-        const nameResponse = await axios.get(`https://api.finmindtrade.com/api/v4/data?dataset=TaiwanStockInfo&data_id=${stockCode}&token=${token}`);
-        
-        if (!nameResponse.data || !nameResponse.data.data || nameResponse.data.data.length === 0) {
-          throw new Error('Stock name not found');
+        // 獲取股票名稱
+        const q = query(collection(db, "StocksDirectory"), where("stock_id", "==", stockCode));
+        const querySnapshot = await getDocs(q);
+
+        if (querySnapshot.empty) {
+            throw new Error('Stock name not found in database');
         }
 
-        const stockName = nameResponse.data.data[0].stock_name;
+        // 取得第一個匹配項目
+        const docData = querySnapshot.docs[0].data();
+        const stockName = docData.stock_name;
 
-        // 获取股价及其他数据
-        const response = await axios.get(`https://api.finmindtrade.com/api/v4/data?dataset=TaiwanStockPrice&data_id=${stockCode}&start_date=2024-08-01&end_date=2024-08-18&token=${token}`);
+        // 獲取股價及其他資訊
+        const response = await axios.get(`https://api.finmindtrade.com/api/v4/data?dataset=TaiwanStockPrice&data_id=${stockCode}&start_date=${startDate}&end_date=${today}&token=${token}`);
         
         if (response.data.data.length === 0) {
           throw new Error('Stock not found');
         }
         
         const latestData = response.data.data[response.data.data.length - 1];
+
 
         setStockData({
           stockCode: latestData.stock_id,
@@ -60,6 +69,8 @@ const StockSummary: React.FC<StockSummaryProps> = ({ stockCode }) => {
         console.error('Error fetching stock data:', error);
         setError('Stock not found');
         setStockData(null); // 清空现有数据
+      } finally {
+        setLoading(false); // 完成加載，無論成功或失敗
       }
     };
 
@@ -84,6 +95,16 @@ const StockSummary: React.FC<StockSummaryProps> = ({ stockCode }) => {
   const handleSuggestionClick = (code: string) => {
     window.location.href = `/stock-analysis?code=${code}`;
   };
+
+  if (loading) {
+    return (
+      <div className={styles.loadingAnimation}>
+        <div className={styles.spinner}></div> {/* 加載旋轉圖標 */}
+      </div>
+    );
+  }
+  
+
 
   if (error) {
     return (
@@ -112,14 +133,14 @@ const StockSummary: React.FC<StockSummaryProps> = ({ stockCode }) => {
 
   if (!stockData) {
     return <div>Loading...</div>;
-  }
+  } 
 
   return (
     <div className={styles.summaryContainer}>
       <div className={styles.stockInfo}>
         <span className={styles.stockName}>{stockData.stockName} ({stockData.stockCode})</span>
-        <span className={styles.stockDate}>{stockData.date} 收盤價</span>
         <span className={styles.stockPrice}>{stockData.closePrice} 元</span>
+        <span className={styles.stockDate}>{stockData.date} 收盤價</span>
       </div>
       <button
         className={styles.trackButton}
