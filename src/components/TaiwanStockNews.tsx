@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-
+import styles from '../styles/Analysis.module.css';
 interface TaiwanStockNewsProps {
     stockCode: string;
 }
@@ -11,13 +11,14 @@ interface TaiwanStockNewsProps {
 const TaiwanStockNews = ({ stockCode }: TaiwanStockNewsProps) => {
     const [news, setNews] = useState<any[]>([]);
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+    const [message, setMessage] = useState<string>('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const newsPerPage = 12;
 
     useEffect(() => {
         const fetchNews = async () => {
             if (!stockCode || !selectedDate) return;
-
-            const formattedDate = selectedDate.toISOString().split('T')[0]; // 格式化日期为 YYYY-MM-DD
-
+            const formattedDate = selectedDate.toISOString().split('T')[0];
             try {
                 const response = await axios.get('/api/TaiwanStockNews', {
                     params: {
@@ -26,7 +27,13 @@ const TaiwanStockNews = ({ stockCode }: TaiwanStockNewsProps) => {
                         end_date: formattedDate,
                     },
                 });
-                setNews(response.data);
+                if (response.data.message) {
+                    setMessage(response.data.message);
+                    setNews([]);
+                } else {
+                    setNews(response.data);
+                    setMessage('');
+                }
             } catch (error) {
                 console.error('Error fetching Taiwan stock news:', error);
             }
@@ -35,8 +42,18 @@ const TaiwanStockNews = ({ stockCode }: TaiwanStockNewsProps) => {
         fetchNews();
     }, [stockCode, selectedDate]);
 
+    const indexOfLastNews = currentPage * newsPerPage;
+    const indexOfFirstNews = indexOfLastNews - newsPerPage;
+    const currentNews = news.slice(indexOfFirstNews, indexOfLastNews);
+
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(news.length / newsPerPage); i++) {
+        pageNumbers.push(i);
+    }
+
+
     return (
-        <div style={{ width: '100%', backgroundColor:'white', marginTop:'10px', height: '490px', fontSize:'0.5rem', padding:'30px'}}>
+        <div className={styles.newsplot}>
             <h1>台股相關新聞</h1>
             <div>
                 <label>選擇日期: </label>
@@ -46,15 +63,26 @@ const TaiwanStockNews = ({ stockCode }: TaiwanStockNewsProps) => {
                     dateFormat="yyyy-MM-dd"
                 />
             </div>
-            <ul>
-                {news.map((item, index) => (
-                    <li key={index}>
-                        <h2>{item.title}</h2>
-                        <p>{item.content}</p>
-                        <p><em>{item.date}</em></p>
-                    </li>
+            {message ? <p>{message}</p> : (
+                <ul>
+                    {currentNews.map((item, index) => (
+                        <li key={index}>
+                            <a href={item.link} target="_blank" rel="noopener noreferrer" style={{ color: 'blue' }}>
+                                <h2>{item.title}</h2>
+                            </a>
+                            <p>{item.content}</p>
+                            <p><em>{item.date}</em></p>
+                        </li>
+                    ))}
+                </ul>
+            )}
+            <div className={styles.newsbutton}>
+                {pageNumbers.map(number => (
+                    <button key={number} onClick={() => setCurrentPage(number)}>
+                        {number}
+                    </button>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };

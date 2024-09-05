@@ -1,0 +1,163 @@
+.wrapperout{
+background-color: #ccc;
+  width: 100vw;
+  display: flex;         /* 啟用 flexbox */
+  justify-content: center; /* 水平置中 */
+}
+
+.wrapper{
+
+  margin-top: 1000px;
+  display: flex;         
+  justify-content: center; 
+  align-items: center;     
+  flex-direction: column;  
+  text-align: center;     
+  width: 200vw;
+
+
+}
+
+
+
+.pageContainer {
+  margin: 10px;
+margin-top: 100px;
+
+  display: flex;         /* 啟用 flexbox */
+  flex-direction: column;  /* 元素垂直堆疊 */
+  justify-content: center; /* 水平置中 */
+  align-items: center;     /* 垂直置中 */
+
+
+  border-radius: 0.25rem;
+  padding: 20px;
+  background-color: aliceblue;
+  text-align: center;
+
+
+  max-width: 480px;
+}
+
+
+
+
+/* Sidebar 的樣式 */
+/* .sidebar {
+  width: 220px;
+
+  height: 100vh; 
+  background-color: #f4f4f4; 
+} */
+
+/* 右側內容區域的樣式 */
+
+
+.content-area {
+  flex: 1;
+  padding: 20px;
+  max-width: 80%; /* 控制內容區域的最大寬度 */
+  overflow-y: auto; /* 當內容過多時，啟用滾動條 */
+
+}
+
+.stock-summary {
+  width: 100%; /* 元件寬度占滿父容器 */
+  max-width: 600px; /* 設置最大寬度 */
+  height: auto; /* 高度根據內容自動調整 */
+  margin-bottom: 20px; /* 元件之間的間距 */
+}
+
+.wrapperout{
+
+  width: 100vw;
+  display: flex;         /* 啟用 flexbox */
+  justify-content: center; /* 水平置中 */
+}
+
+.wrapper{
+
+  margin-top: 80px;
+  display: flex;         /* 啟用 flexbox */
+  justify-content: center; /* 水平置中 */
+  align-items: center;     /* 垂直置中 */
+  flex-direction: column;  /* 元素垂直堆疊 */
+  text-align: center;      /* 文本居中對齊 */
+  width: 1000px;
+
+
+}
+
+
+
+.pageContainer {
+  margin: 10px;
+margin-top: 100px;
+
+  display: flex;         /* 啟用 flexbox */
+  flex-direction: column;  /* 元素垂直堆疊 */
+  justify-content: center; /* 水平置中 */
+  align-items: center;     /* 垂直置中 */
+
+
+  border-radius: 0.25rem;
+  padding: 20px;
+  background-color: aliceblue;
+  text-align: center;
+
+
+  max-width: 480px;
+}
+
+
+.analysis {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.analysis-app {
+  width: 100%; /* Adjust width as necessary */
+  display: flex;
+  flex-direction: row;
+}
+
+.menu-frame {
+  flex-basis: 20%;
+  border-right: 1px solid #ccc; /* Separator */
+}
+
+.content-area {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.menu-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background-color: #f0f0f0;
+}
+
+.sub-menu {
+  background: #efefef;
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
+.report-frame {
+  background: white;
+  padding: 15px;
+  margin-top: 10px;
+}
+
+.stock-info, .report-area {
+  margin: 10px 0;
+}
+
+/* For the dynamic content changing */
+.content-dynamic {
+  transition: all 0.3s ease;
+}

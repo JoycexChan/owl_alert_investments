@@ -8,7 +8,7 @@
 
 .wrapper{
 
-  margin-top: 80px;
+  margin-top: 40px;
   display: flex;         /* 啟用 flexbox */
   justify-content: center; /* 水平置中 */
   align-items: center;     /* 垂直置中 */
@@ -23,16 +23,17 @@
 
 .pageContainer {
   margin: 10px;
-margin-top: 100px;
+margin-top: 40px;
 
   display: flex;         /* 啟用 flexbox */
   flex-direction: column;  /* 元素垂直堆疊 */
   justify-content: center; /* 水平置中 */
   align-items: center;     /* 垂直置中 */
 
-
+  width: 90vw;
   border-radius: 0.25rem;
-  padding: 20px;
+  padding: 20px 20px 5px 20px;
+
   background-color: aliceblue;
   text-align: center;
 
@@ -41,7 +42,7 @@ margin-top: 100px;
 }
 
 .titleContainer {
-  width: 90%;
+  width: 100%;
   padding: 20px;
   background: linear-gradient(230deg, #0386F4 63%, #2AA99E 14%);
   border-radius: 10px;
@@ -49,7 +50,7 @@ margin-top: 100px;
   color: white;
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 
@@ -58,7 +59,7 @@ margin-top: 100px;
   display: flex;         /* 啟用 flexbox */
   flex-direction: column;  /* 元素垂直堆疊 */
   justify-content: center;
-  width: 90%;
+  width: 100%;
 
 }
 
@@ -73,12 +74,13 @@ margin-top: 100px;
 .stockListHeader {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-gap: 10px;
+  gap: 10px;
   width: 100%;
   background-color: #0386F4;
   color: #ffffff;
   padding: 10px;
   border-radius:  0.25rem 0.25rem 0 0 ;
+  font-weight: 800;
 }
 
 .stockItem {
@@ -88,33 +90,47 @@ gap: 10px;
   width: 100%;
   align-items: center;
   padding: 10px;
-  border: 1px solid #ccc;
+  border-bottom: 2px solid #000000;
+  /* border-bottom: 2px solid #0386F4; */
+  /* border-left: 2px solid rgb(180, 180, 180);
+  border-right: 2px solid rgb(180, 180, 180); */
   border-radius: 5px;
   border-radius:   0 0 0.25rem 0.25rem;
 }
 
+.stockItem button{
+background-color: #ffffff;
+padding: 3px;
+border-radius:  0.25rem;
+}
+
+
+
 .inputContainer {
+
   display: flex;
   justify-content: space-between;
-margin: 10px;
-height: 30px;
-width: 90%;
-
+  margin: 15px;
+  height: 30px;
+  width: 100%;
 }
 
 .inputField {
+  display: flex;
+  text-align: center; 
+  border: 2px solid rgb(0, 0, 0);
   flex: 1;
   margin-right: 10px;
   height: 30px;
   width: 15vw;
   border-radius: 0.25rem;
   padding: 10px;
-  min-width: 100px;
+  min-width: 85px;
 }
 
 .inputContainer  button{
-width: 70px;
-height: 30px;
+  width: 70px;
+  height: 30px;
   margin-bottom: 20px;
   border-radius: 0.25rem;
   color: #ffffff;

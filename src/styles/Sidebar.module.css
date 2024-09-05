@@ -1,22 +1,21 @@
 .sidebar {
 border-radius: 0.25rem;
     width: 20vw;
-    background-color: #f4f4f4;
-    padding: 20px;
-margin-right: 10px;
-    height: 600px;
+    background-color: #ffffff;
+
+    height: 100%;
     max-width: 200px;
-    /* position: fixed; 
-    left: 50px; 
-    top: 100px;  */
+
 }
 
 .contentArea {
     flex: 1; /* 填滿剩餘空間 */
-    overflow-y: auto; /* 當內容過多時啟用滾動條 */
-    padding: 20px; /* 給內容區域加一些內邊距 */
-    height: 80vh;
 
+    padding: 10px; /* 給內容區域加一些內邊距 */
+    height: 80vh;
+display: flex;
+text-align: center;      /* 文本居中對齊 */
+justify-content: center; /* 水平置中 */
 }
 
 .sidebar ul {
@@ -34,3 +33,41 @@ margin-right: 10px;
 .sidebar ul li:hover {
     background-color: #ddd;
 }
+
+
+
+
+
+
+
+
+
+@media (max-width: 800px) {
+    .sidebar {
+            max-width: 50px;
+        }
+  }
+
+/* 
+  @media (max-width: 600px) {
+    .sidebar {
+      width: 90vw;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .contentArea {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;  
+      justify-content: center; 
+      align-items: center; 
+      padding: 10px; 
+    }
+  
+    .contentArea li {
+      flex: 1; 
+      margin: 5px;  
+    }
+  }
+   */

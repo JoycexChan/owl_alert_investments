@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Plot from 'react-plotly.js';
 import axios from 'axios';
 import dayjs from 'dayjs';
-
+import styles from '../styles/Analysis.module.css';
 interface StockPERData {
   date: string;
   dividendYield: number;
@@ -59,7 +59,7 @@ const StockPER_DY: React.FC<{ stockCode: string }> = ({ stockCode }) => {
   const dividendYields = dataPoints.map(item => item.dividendYield);
 
   return (
-    <div style={{ width: '100%', backgroundColor:'white', marginTop:'10px', height: '490px', fontSize:'0.5rem', padding:'30px'}}>
+    <div className={styles.plot}>
 
       {/* <h1>{stockCode} - 過去五年每月最後一日的殖利率走勢</h1> */}
       <Plot
@@ -74,20 +74,43 @@ const StockPER_DY: React.FC<{ stockCode: string }> = ({ stockCode }) => {
           }
         ]}
         layout={{
-          xaxis: { title: '日期', type: 'date' },
-          yaxis: { title: '殖利率 (%)', autorange: true },
+          xaxis: { title: '時間(月)', type: 'date',
+            showgrid: false,
+            showline: true,
+            linewidth: 1,
+            linecolor: 'black',
+            mirror: true,
+          },
+          yaxis: { title: '殖利率 (%)', autorange: true,
+            showgrid: false,
+            showline: true,
+            linewidth: 1,
+            linecolor: 'black',
+            mirror: true,
+           },
           title: '每月最後一日殖利率走勢圖',
-          showlegend: false,
+          showlegend: true,
+          legend: {
+            x: 0,         // Legend position on x-axis (left side of the graph area)
+            y: 1,         // Legend position on y-axis (top of the graph area)
+            xanchor: 'left',
+            yanchor: 'top',
+          },
+          plot_bgcolor: 'transparent', // Set plot background color
+          paper_bgcolor: 'transparent', // Set paper background color
+          margin: { t: 40, r: 40, b: 40, l: 60 }, // Adjust the margin to prevent clipping
           grid: { rows: 1, columns: 1 },
-          autosize: true
+          autosize: true,
+  
         }}
         useResizeHandler={true} /* 這一行確保圖表根據窗口大小自動調整 */
-        style={{ width: '100%', height: '100%' }} /* 設置圖表寬高 */
-
-        config={{ responsive: true }}
-        
+        style={{ width: '100%', height: '100%', minWidth:'600px' }} /* 設置圖表寬高 */
+        config={{
+          displayModeBar: false,
+        }}
       />
-    </div>
+      </div>
+  
   );
 };
 

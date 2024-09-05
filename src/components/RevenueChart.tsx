@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Plot from 'react-plotly.js';
 import axios from 'axios';
 import dayjs from 'dayjs';
-
+import styles from '../styles/Analysis.module.css';
 interface RevenueData {
   date: string;
   revenue: number;
@@ -63,7 +63,7 @@ const RevenueChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
   const revenues = revenueData.map(item => item.revenue);
 
   return (
-    <div style={{ width: '100%', backgroundColor:'white', marginTop:'10px', height: '490px', fontSize:'0.5rem', padding:'30px'}}>
+    <div className={styles.plot}>
 
     <Plot
       data={[
@@ -114,13 +114,13 @@ const RevenueChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
         },
         plot_bgcolor: 'transparent', // Set plot background color
         paper_bgcolor: 'transparent', // Set paper background color
-        margin: { t: 40, r: 40, b: 40, l: 40 }, // Adjust the margin to prevent clipping
+        margin: { t: 40, r: 40, b: 40, l: 50 }, // Adjust the margin to prevent clipping
         grid: { rows: 1, columns: 1 },
         autosize: true,
 
       }}
       useResizeHandler={true} /* 這一行確保圖表根據窗口大小自動調整 */
-      style={{ width: '100%', height: '100%' }} /* 設置圖表寬高 */
+      style={{ width: '100%', height: '100%', minWidth:'600px' }} /* 設置圖表寬高 */
       config={{
         displayModeBar: false,
       }}

@@ -26,7 +26,10 @@ const Navbar = () => {
                 const querySnapshot = await getDocs(q);
                 const stocksArray: Stock[] = [];
                 querySnapshot.forEach(doc => {
-                    stocksArray.push(doc.data() as Stock);
+                    const data = doc.data() as Stock;
+                    if (!stocksArray.some(stock => stock.stock_id === data.stock_id)) {
+                        stocksArray.push(data);
+                    }
                 });
                 setStocks(stocksArray);
             };
@@ -49,8 +52,28 @@ const Navbar = () => {
     const handleSearch = () => {
         if (stockCode) {
             router.push(`/stock-analysis?code=${stockCode}`);
+            setStocks([]); // 清除搜尋結果
         }
     };
+
+    const handleBlur = () => {
+        // 使用setTimeout延遲清空推薦結果，給點擊事件足夠時間觸發
+        setTimeout(() => {
+            setStocks([]);
+        }, 200); // 200毫秒延遲
+    };
+
+    const handleClickStock = (stock: Stock) => {
+    // 先清空推薦列表
+    setStocks([]);
+
+    // 設置一個短暫延遲再導航
+    setTimeout(() => {
+        setStockCode(stock.stock_id);
+        router.push(`/stock-analysis?code=${stock.stock_id}`);
+    }, 100);  // 100毫秒延遲
+    };
+    
 
     return (
         <nav className={styles.navbar}>
@@ -86,11 +109,12 @@ const Navbar = () => {
                     placeholder="輸入台股代碼"
                     value={stockCode}
                     onChange={(e) => setStockCode(e.target.value)}
+                    onBlur={handleBlur} // 失焦時觸發
                     className={styles.searchInput}
                 />
                 <div className={styles.searchResults}>
                     {stocks.map(stock => (
-                        <div key={stock.stock_id} onClick={() => { setStockCode(stock.stock_id); handleSearch(); }}>
+                        <div key={stock.stock_id} onClick={() => handleClickStock(stock)}>
                             {stock.stock_id} {stock.stock_name}
                         </div>
                     ))}
