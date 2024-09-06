@@ -85,9 +85,9 @@ const RevenueChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
         },
       ]}
       layout={{
-        title: `${stockCode} Monthly Revenue Trend`,
+        title: `${stockCode} 每月營收趨勢`,
         xaxis: {
-          title: 'Time (year)',
+          title: '時間 (年)',
           type: 'date',
           showgrid: false,
           showline: true,
@@ -97,7 +97,7 @@ const RevenueChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
           
         },
         yaxis: {
-          title: 'Revenue (thousands)',
+          title: '營收 (千元)',
           autorange: true,
           showgrid: false,
           showline: true,
@@ -114,7 +114,7 @@ const RevenueChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
         },
         plot_bgcolor: 'transparent', // Set plot background color
         paper_bgcolor: 'transparent', // Set paper background color
-        margin: { t: 40, r: 40, b: 40, l: 50 }, // Adjust the margin to prevent clipping
+        margin: { t: 40, r: 40, b: 40, l: 60 }, // Adjust the margin to prevent clipping
         grid: { rows: 1, columns: 1 },
         autosize: true,
 
