@@ -13,7 +13,7 @@ const StockPicking = () => {
   useEffect(() => {
     const fetchStocks = async () => {
       try {
-        const response = await axios.get('/api/fetchTop20Stocks'); // 確保這裡的 URL 指向新的 API 端點
+        const response = await axios.get('/api/_fetchTopTurnaroundStocks'); // 確保這裡的 URL 指向新的 API 端點
         setStocks(response.data);
       } catch (error) {
         console.error('Error fetching stocks:', error);
