@@ -14,10 +14,10 @@ const Carousel = () => {
   const slides = [
     {
       img: '/images/red.jpg',
-      title: '加入我們',
-      description: '立即註冊，開始你的投資旅程。',
-      link: '/sing_in',
-      buttonname: 'Read More',
+      title: '一鍵收藏，每日提醒',
+      description: '輕鬆管理您關注的股票。設定目標價格，當股票達到您的預期價位時，立即接收實時通知。開啟通知，把握每一次市場機遇。',
+      link: '/sign_in',
+      buttonname: '免費註冊',
       hasSearch: false // 其他 slide 不需要搜尋框
     },
     {
@@ -37,16 +37,16 @@ const Carousel = () => {
     },
     {
       img: '/images/purple.jpg',
-      title: '加入我們',
-      description: '立即註冊，開始你的投資旅程。',
-      link: '/01register',
-      buttonname: 'Read More',
+      title: '一鍵收藏，每日提醒',
+      description: '開啟通知，輕鬆管理關注股票。設定目標價格，每日早上十點接收實時通知。',
+      link: '/sign_in',
+      buttonname: '免費註冊',
       hasSearch: false // 其他 slide 不需要搜尋框
     },
     {
       img: '/images/blue.jpg',
-      title: '尋找你的最佳投資，發掘你的生活',
-      description: '高效的股票搜索工具，最佳的選股助手',
+      title: '金訊鴞',
+      description: '尋找你的最佳投資，發掘你的生活，高效的股票搜索工具，最佳的選股助手',
       link: '/stock-analysis',
       hasSearch: true // 只有這個 slide 需要搜尋框，且不需要按鈕
     },
@@ -105,6 +105,7 @@ const Carousel = () => {
 
   return (
     <main>
+      <div className={styles.indexmain}>
       <ul className={styles.slider} ref={sliderRef}>
         {slides.map((slide, index) => (
           <li key={index} className={`${styles.slide} item`} style={{ backgroundImage: `url('${slide.img}')` }}>
@@ -141,17 +142,17 @@ const Carousel = () => {
 
       <div className={styles.controls}>
         <button className="prev" onClick={() => { const slider = sliderRef.current; slider.prepend(slider.lastChild); }}>
-        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512" style={{ transform: "scaleX(-1)" }}>
+        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="45" height="45" style={{ transform: "scaleX(-1)" }}>
           <path d="M12,0C5.383,0,0,5.383,0,12s5.383,12,12,12,12-5.383,12-12S18.617,0,12,0Zm5.629,12.896l-4.629,4.236v-4.132H6v-2h7V7l4.629,4.236c.494,.443,.494,1.217,0,1.66Z" fill="black" fillOpacity="0.5"/>
           </svg>
         </button>
         <button className="next" onClick={() => { const slider = sliderRef.current; slider.append(slider.firstChild); }}>
-        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512">
+        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="45" height="45">
         <path d="M12,0C5.383,0,0,5.383,0,12s5.383,12,12,12,12-5.383,12-12S18.617,0,12,0Zm5.629,12.896l-4.629,4.236v-4.132H6v-2h7V7l4.629,4.236c.494,.443,.494,1.217,0,1.66Z" fill="black" fillOpacity="0.5"/>
           </svg>
         </button>
       </div>
-
+      </div>
     </main>
   );
 };

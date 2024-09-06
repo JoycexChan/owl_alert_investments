@@ -12,10 +12,8 @@ border-radius: 0.25rem;
     flex: 1; /* 填滿剩餘空間 */
 
     padding: 10px; /* 給內容區域加一些內邊距 */
-    height: 80vh;
-display: flex;
-text-align: center;      /* 文本居中對齊 */
-justify-content: center; /* 水平置中 */
+    height: 60vh;
+
 
 display: flex;             /* Enables flexbox */
 flex-direction: column;      /* Aligns children horizontally */

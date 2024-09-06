@@ -154,7 +154,7 @@ const EnhancedKLineChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
         },
         plot_bgcolor: 'transparent', // Set plot background color
         paper_bgcolor: 'transparent', // Set paper background color
-        margin: { t: 40, r: 10, b: 40, l: 50 }, // Adjust the margin to prevent clipping
+        margin: { t: 40, r: 10, b: 10, l: 50 }, // Adjust the margin to prevent clipping
         grid: { rows: 1, columns: 1 },
         autosize: true,
 

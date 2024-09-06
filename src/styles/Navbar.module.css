@@ -162,7 +162,26 @@ position: relative; /* 这确保了下拉框将相对于此容器定位 */
     top: 60px;
 }
 
+.footout {
 
+    width: 100vw;            /* Ensures the footer extends full width */
+    background-color: #333; /* Deep gray background color */
+    color: #fff;            /* White text color for contrast */
+    display: flex;
+    align-items: center;
+
+  }
+  
+  .footin {
+
+
+    display: flex;
+    align-items: center;
+    padding: 10px;        /* Padding on the sides, if needed */
+    font-size: 12px;
+
+  }
+  
   @media (max-width: 640px) {
     .menuButton {
         display: block;

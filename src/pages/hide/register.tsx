@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -9,7 +9,7 @@ import {
   GoogleAuthProvider
 } from 'firebase/auth';
 import { useRouter } from 'next/router';
-import Navbar from '../components/Navbar';
+import Navbar from '../../components/Navbar';
 
 const RegisterPage = () => {
     const [email, setEmail] = useState('');
