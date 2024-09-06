@@ -3,6 +3,7 @@
   width: 100vw;
   display: flex;         /* 啟用 flexbox */
   justify-content: center; /* 水平置中 */
+  background-color: rgb(228, 228, 228);
 }
 
 .wrapper{
@@ -81,7 +82,7 @@ gap: 10px;
   display: flex;
   flex-direction: column;  /* 元素垂直堆疊 */
   border-radius: 0.25rem;
-  background-color: rgba(255, 255, 255, 0.849);
+  background-color: rgba(255, 255, 255, 0.918);
   z-index: 300;
   margin-bottom: 10px;
 }
@@ -129,7 +130,7 @@ display: flex;
   width: 300px;
   margin: 10px;
   padding: 10px;
-  background-color: #f1f1f1; /* Light grey for the description */
+  background-color: #ffffff; /* Light grey for the description */
   text-align: left;
   margin-bottom: 10px;
   overflow-x: auto; /* 啟用水平滾動 */

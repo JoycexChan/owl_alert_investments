@@ -1,6 +1,6 @@
 // src/pages/api/fetchTop20Stocks.ts
 import { NextApiRequest, NextApiResponse } from 'next';
-import firebaseAdmin from '../../firebaseAdmin.mjs';
+import firebaseAdmin from '../../../firebaseAdmin.mjs';
 
 const db = firebaseAdmin.firestore();
 
