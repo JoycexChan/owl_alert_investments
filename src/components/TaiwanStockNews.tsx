@@ -13,7 +13,7 @@ const TaiwanStockNews = ({ stockCode }: TaiwanStockNewsProps) => {
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
     const [message, setMessage] = useState<string>('');
     const [currentPage, setCurrentPage] = useState(1);
-    const newsPerPage = 5;
+    const newsPerPage = 6;
 
     useEffect(() => {
         const fetchNews = async () => {
@@ -64,18 +64,20 @@ const TaiwanStockNews = ({ stockCode }: TaiwanStockNewsProps) => {
                 />
             </div>
             {message ? <p>{message}</p> : (
-                <ul>
-                    {currentNews.map((item, index) => (
-                        <li key={index}>
+            <ul>
+                {currentNews.map((item, index) => (
+                    <div key={index} className={styles.newsItem}>  {/* Each news item wrapped in a div */}
+                        <li>
                             <a href={item.link} target="_blank" rel="noopener noreferrer" style={{ color: 'blue' }}>
-                                <h2>{item.title}</h2>
+                            <h2 className={styles.newsTitle}>{item.title}</h2>
                             </a>
                             <p>{item.content}</p>
                             <p><em>{item.date}</em></p>
                         </li>
-                    ))}
-                </ul>
-            )}
+                    </div>
+                ))}
+            </ul>
+        )}
             <div className={styles.newsbutton}>
                 {pageNumbers.map(number => (
                     <button key={number} onClick={() => setCurrentPage(number)}>

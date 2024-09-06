@@ -154,13 +154,13 @@ const EnhancedKLineChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
         },
         plot_bgcolor: 'transparent', // Set plot background color
         paper_bgcolor: 'transparent', // Set paper background color
-        margin: { t: 40, r: 10, b: 40, l: 50 }, // Adjust the margin to prevent clipping
+        margin: { t: 40, r: 10, b: 10, l: 50 }, // Adjust the margin to prevent clipping
         grid: { rows: 1, columns: 1 },
         autosize: true,
 
       }}
       useResizeHandler={true} /* 這一行確保圖表根據窗口大小自動調整 */
-      style={{ width: '100%', height: '100%', minWidth:'600px' }} /* 設置圖表寬高 */
+      style={{ width: '100%', height: '100%', minWidth:'560px' }} /* 設置圖表寬高 */
       config={{
         displayModeBar: false,
       }}

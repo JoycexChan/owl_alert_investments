@@ -43,7 +43,9 @@ body {
 html,
 body {
   background-color: rgb(193, 193, 193);
-
+  height: 100%;
+  margin: 0;
+  padding: 0;
   /* background-image: url('../styles/images/oai.png'); 
   background-position: center;
   background-repeat: no-repeat;
@@ -56,14 +58,23 @@ body {
   display: grid;
   place-items: center;
   overflow: hidden;
-
+  min-height: 100vh;
   width: 100%;
   max-width: 100vw;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* This will push the footer to the bottom */
 }
 
 
 
+body.Carousel .indexmain {
+  overflow-y: hidden;
+  height: 100vh;
+}
 
 /* main {
   position: relative;
@@ -73,3 +84,12 @@ body {
   overflow: hidden;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 } */
+
+
+@media (max-width: 800px) {
+  body {
+
+    overflow: visible;
+
+  }
+}

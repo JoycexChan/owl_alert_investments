@@ -120,7 +120,7 @@ const RevenueChart: React.FC<{ stockCode: string }> = ({ stockCode }) => {
 
       }}
       useResizeHandler={true} /* 這一行確保圖表根據窗口大小自動調整 */
-      style={{ width: '100%', height: '100%', minWidth:'600px' }} /* 設置圖表寬高 */
+      style={{ width: '100%', height: '100%', minWidth:'560px' }} /* 設置圖表寬高 */
       config={{
         displayModeBar: false,
       }}

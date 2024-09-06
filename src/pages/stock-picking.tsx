@@ -33,7 +33,7 @@ const StrategyInfo = () => {
 
   return (
     <div>
-      <Navbar />
+
       <h1>精選清單</h1>
       <button onClick={() => setShowModal(true)}>查看策略原理</button>
       {showModal && (
@@ -73,7 +73,7 @@ const StrategyInfo = () => {
       <h2>轉機股排行</h2>
       <StockPicking /> {/* 直接使用 StockPicking 組件 */}
 
-      <Footer />
+
     </div>
   );
 };

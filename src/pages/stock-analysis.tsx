@@ -43,7 +43,7 @@ const StockAnalysis = () => {
                 <MonthlyKLineChart stockCode={code as string}/>
                 </div>
                 <div className={styles.textContent}>
-                  <h2>圖表說明</h2>
+                  <h3>圖表說明</h3>
                   <p>股票的週線圖，包含蠟燭圖和5日、10日、20日移動平均線。蠟燭圖顯示每週的開盤、收盤、最高和最低價，幫助投資者識別市場趨勢和價格波動。移動平均線顯示短期到長期的價格趨勢，是判斷買賣時機的重要工具</p>
                 
                 </div>
@@ -60,7 +60,7 @@ const StockAnalysis = () => {
                 <StockPER_DY stockCode={code as string} />
               </div>
               <div className={styles.textContent}>
-              <h2>圖表說明</h2>
+              <h3>圖表說明</h3>
                   <p>提供了股票過去五年每月最後一天的殖利率走勢圖。通過這個圖表，投資者可以觀察股票殖利率的長期趨勢，了解股票在不同時間的表現，進而評估股票的吸引力。</p>
                 
                 </div>
@@ -77,7 +77,7 @@ const StockAnalysis = () => {
                 <RevenueChart stockCode={code as string} />
               </div>
               <div className={styles.textContent} >
-              <h2>圖表說明</h2>
+              <h3>圖表說明</h3>
                   <p>展示了特定股票過去五年每月收入的走勢圖，並且計算了月度平均收入。透過這張圖表，投資者可以追蹤企業的營收表現，識別收入增長或下降的趨勢，從而分析企業的經營狀況和財務健康。</p>
                 
                 </div>
