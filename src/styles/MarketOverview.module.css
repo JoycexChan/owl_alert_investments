@@ -1,0 +1,326 @@
+.wrapperout{
+  
+  width: 100vw;
+  display: flex;         /* 啟用 flexbox */
+  justify-content: center; /* 水平置中 */
+  background-color: rgb(228, 228, 228);
+}
+
+.wrapper{
+
+  margin-top: 50px;
+  display: flex;         /* 啟用 flexbox */
+  justify-content: center; /* 水平置中 */
+  align-items: center;     /* 垂直置中 */
+  flex-direction: column;  /* 元素垂直堆疊 */
+  text-align: center;      /* 文本居中對齊 */
+  max-width: 1000px;
+  width: 100%;
+
+}
+
+
+.background {
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  padding: 54px 0 510px;
+  overflow: hidden;
+  background-color: #0386f4;
+  background-image: linear-gradient(136deg, #0386f4 0%, #2fae90 90%);
+  transform: skewY(-9deg);
+  transform-origin: 0 50%;
+  text-align: center;
+  color: white;
+  height: 500px;
+}
+
+.backgroundtext{
+  
+  z-index: 100;
+  margin-top: 30px;
+  color: white;
+}
+
+.statisticscontainer {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+gap: 10px;
+  z-index: 100;
+
+
+}
+
+.statbox {
+  width: 20vw;
+  text-align: center;
+  background: #ffffff; /* Light grey background */
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+.statbox h2{
+  font-size: 13px;
+}
+
+.statbox h3{
+  font-size: 20px;
+  color: red;
+  line-height: 50px;
+}
+
+.statbox p{
+  font-size: 13px;
+  color: red;
+}
+.textcontainer{
+  width: 80%;
+  margin-top: 10px;
+  height: 457px;
+  display: flex;
+  flex-direction: column;  /* 元素垂直堆疊 */
+  border-radius: 0.25rem;
+  background-color: rgba(255, 255, 255, 0.918);
+  z-index: 300;
+  margin-bottom: 10px;
+}
+
+.plot {
+  width: 100%;
+
+height: 300px;
+  font-size: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: white;
+
+  overflow-y: auto; /* 啟用水平滾動 */
+}
+
+.chartcontainerout {
+
+width: 100%;
+display: flex;
+
+  z-index: 100;
+  overflow-x: auto; /* 啟用水平滾動 */
+
+}
+.chartcontainer {
+  height: 320px;
+  width: 70%;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 100;
+
+  font-size: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: white;
+  padding: 10px;
+  margin-left: 10px;
+
+
+}
+
+.descriptionbox {
+  font-size: smaller;
+  height: 320px;
+  border-radius: 0.25rem;
+  width: 300px;
+  margin: 10px;
+  padding: 10px;
+  background-color: #ffffff; /* Light grey for the description */
+  text-align: left;
+  margin-bottom: 10px;
+  overflow-x: auto; /* 啟用水平滾動 */
+  margin-top: 0px;
+}
+
+
+.descriptionbox h3{
+line-height: 25px;
+}
+
+
+
+
+@media (min-width: 490px) and (max-width: 800px) {
+  .textcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 居中对齐子元素 */
+    margin: 20px; /* 可以根据需要调整外边距 */
+  }
+  
+  .statisticscontainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* 居中对齐所有框 */
+    gap: 20px; /* 框之间的间隙 */
+  }
+  
+  .statbox {
+    flex: 0 1 100%; /* 默认所有框都占满宽度 */
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    background: #f9f9f9;
+  }
+  
+  /* 特定行的设置 */
+  .firstrow {
+    flex: 0 1 85%; /* 第一行一个元素占满宽度 */
+  }
+  
+  .secondrow,
+  .thirdrow {
+    flex: 0 1 40%; /* 第二行和第三行的元素各占一半宽度 */
+  }
+
+
+
+  .textcontainer{
+    display: flex;
+    justify-content: center; /* 水平置中 */
+    height: 100%;
+
+  }
+  .chartcontainerout {
+  height: 100%;
+  display: flex;
+  flex-direction: column;  /* 元素垂直堆疊 */
+  justify-content: center; /* 水平置中 */
+  overflow-y: hidden ; /* 啟用水平滾動 */
+  overflow-x: hidden ; /* 啟用水平滾動 */
+
+  }
+.plot{
+
+  padding: 10px;
+  overflow-y: visible ; /* 啟用水平滾動 */
+  overflow-x: visible ; /* 啟用水平滾動 */
+}
+
+  .chartcontainer {
+    overflow-x: hidden ; /* 啟用水平滾動 */
+    height: 350px;
+    width: 95%;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 100;
+  
+    font-size: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: white;
+    padding: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    overflow-y: hidden ; /* 啟用水平滾動 */
+    
+  }
+  
+  .descriptionbox {
+    margin-top: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 10px;
+    width: 95%;
+height: 40%;
+
+
+  }
+  }
+
+
+
+  @media (max-width: 489px) {
+    .textcontainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* 居中对齐子元素 */
+      margin: 20px; /* 可以根据需要调整外边距 */
+    }
+    
+    .statisticscontainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* 居中对齐所有框 */
+      gap: 20px; /* 框之间的间隙 */
+    }
+    
+    .statbox {
+      flex: 0 1 100%; /* 默认所有框都占满宽度 */
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+    
+    /* 特定行的设置 */
+    .firstrow {
+      flex: 0 1 85%; /* 第一行一个元素占满宽度 */
+    }
+    
+    .secondrow,
+    .thirdrow {
+      flex: 0 1 85%; /* 第二行和第三行的元素各占一半宽度 */
+    }
+  
+  .plot{
+    width: 600px;
+  }
+  
+    .textcontainer{
+  
+      height: 100%;
+  
+    }
+    .chartcontainerout {
+    height: 85%;
+    width: 85%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;  /* 元素垂直堆疊 */
+    justify-content: center; /* 水平置中 */
+
+    overflow-x: hidden ; /* 啟用水平滾動 */
+    overflow-y: auto ; /* 啟用水平滾動 */
+    }
+  
+  
+    .chartcontainer {
+      margin: 0px;
+      min-width: 300px;
+      height: 360px;
+      width: 100%;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      z-index: 100;
+    
+      font-size: 0.5rem;
+      border-radius: 0.25rem;
+      background-color: white;
+      padding: 10px;
+      margin-top: 10px;
+      overflow-y: auto ; /* 啟用水平滾動 */
+    }
+    
+    .descriptionbox {
+      display: flex;
+      flex-direction: column;  /* 元素垂直堆疊 */
+      justify-content: center; /* 水平置中 */
+      padding: 10px;
+  height: 350px;
+  margin: 0px;
+  margin-top: 20px;
+      width: 100%;
+  margin-bottom: 20px;
+  overflow-x: auto ; /* 啟用水平滾動 */
+  overflow-y: auto ; /* 啟用水平滾動 */
+  
+    }
+    }
