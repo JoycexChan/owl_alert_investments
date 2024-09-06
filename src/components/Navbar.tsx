@@ -85,7 +85,7 @@ const Navbar = () => {
                 <ul>
                     <li onClick={() => setIsMenuOpen(false)}><Link href="/">首頁</Link></li>
                     <li onClick={() => setIsMenuOpen(false)}><Link href="/stock-analysis?code=2330">個股</Link></li>
-                    <li onClick={() => setIsMenuOpen(false)}><Link href="/stock-picking">精選清單</Link></li>
+                    <li onClick={() => setIsMenuOpen(false)}><Link href="/MarketOverview">大盤產業</Link></li>
                     {user && <li onClick={() => setIsMenuOpen(false)}><Link href="/member">收藏匣</Link></li>}
                 </ul>
             </div>
@@ -98,7 +98,7 @@ const Navbar = () => {
                     </Link>
                 </li>
                 <li><Link href="/stock-analysis?code=2330">個股</Link></li>
-                <li><Link href="/stock-picking">精選清單</Link></li>
+                <li><Link href="/MarketOverview">大盤產業</Link></li>
                 {user && <li><Link href="/member">收藏匣</Link></li>}
             </ul>
 
