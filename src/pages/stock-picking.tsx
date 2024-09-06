@@ -3,7 +3,7 @@ import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import StockPicking from '../components/stock-picking2'; // 匯入 StockPicking 組件
+import StockPicking from '../components/stock-picking'; // 匯入 StockPicking 組件
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
