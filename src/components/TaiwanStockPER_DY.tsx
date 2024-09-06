@@ -74,7 +74,7 @@ const StockPER_DY: React.FC<{ stockCode: string }> = ({ stockCode }) => {
           }
         ]}
         layout={{
-          xaxis: { title: '時間(月)', type: 'date',
+          xaxis: { title: '時間 (月)', type: 'date',
             showgrid: false,
             showline: true,
             linewidth: 1,
@@ -88,7 +88,8 @@ const StockPER_DY: React.FC<{ stockCode: string }> = ({ stockCode }) => {
             linecolor: 'black',
             mirror: true,
            },
-          title: '每月最後一日殖利率走勢圖',
+          title: `${stockCode} 每月殖利率走勢圖`,
+
           showlegend: true,
           legend: {
             x: 0,         // Legend position on x-axis (left side of the graph area)

@@ -13,7 +13,7 @@ const TaiwanStockNews = ({ stockCode }: TaiwanStockNewsProps) => {
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
     const [message, setMessage] = useState<string>('');
     const [currentPage, setCurrentPage] = useState(1);
-    const newsPerPage = 12;
+    const newsPerPage = 5;
 
     useEffect(() => {
         const fetchNews = async () => {

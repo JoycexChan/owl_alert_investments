@@ -221,6 +221,7 @@ height: 510px;
 }
 
 .newsplot {
+  line-height: 30px;
   width: 100%;
   border-radius: 0.25rem;
   background-color: white;
@@ -231,11 +232,17 @@ font-size: 0.65rem;
 
   .newsbutton  {
     text-align: center;
-    bottom: 0px;
+
+    margin-top: 10px;
         }
 
   .newsbutton  button{
+    border-radius: 0.25rem;
+    background-color: white;
+    height: 30px;
+    width: 30px;
 margin: 0 4px;
+padding: 5px;
 
     }
 
