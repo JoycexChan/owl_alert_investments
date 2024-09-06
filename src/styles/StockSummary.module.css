@@ -86,3 +86,39 @@
     overflow: hidden; /* 隱藏任何溢出的內容 */
   }
   
+
+  
+  @media (max-width: 530px) {
+    .summaryContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-right: 20px;
+        width: 100%;
+    }
+
+
+    .stockName {
+        font-weight: bold;
+        font-size: 1rem;
+    }
+    
+    .stockDate {
+        font-size: 0.6rem;
+    
+    }
+    
+    .stockPrice {
+        font-weight: bold;
+        font-size: 1rem;
+    
+    }
+    
+    .stockChange {
+        font-size: 1rem;
+    }
+  }

@@ -68,7 +68,7 @@ margin-bottom: 10px;
   padding: 20px;
   margin-top: 10px;
 
-  height: 100px;
+
   overflow-y: auto; /* 啟用水平滾動 */
   text-align: left;
 
@@ -221,11 +221,12 @@ height: 510px;
 }
 
 .newsplot {
+padding: 20px;
   line-height: 30px;
   width: 100%;
   border-radius: 0.25rem;
   background-color: white;
-  padding: 10px;
+
 text-align: left;
 font-size: 0.65rem;
   }
@@ -246,12 +247,41 @@ padding: 5px;
 
     }
 
-  @media (max-width: 500px) {
-    .textContent {
-            height: 60px;
-        }
-        .news {
-          overflow-x: auto; /* 啟用水平滾動 */
-          height: 450px;
-          }
+
+
+  .newsTitle {
+    white-space: nowrap;      /* 確保文字不會換行 */
+    overflow: hidden;         /* 隱藏超出容器的內容 */
+    text-overflow: ellipsis;  /* 使用省略號表示被截斷的文字 */
+    max-width: 100%;           /* 或者根據您的具體需求設置最大寬度 */
+  }
+    
+
+
+  @media (max-width: 800px) {
+
+  .flexContainer {
+    width: 95vw;
+    margin-bottom: 10px;
+    display: flex;     
+    align-items: center;     
+    flex-direction: column;  
+    height:'80vh';
+    max-width: 1000px;
+  }
+
+  .mainContent{
+    margin-top: 10px;
+    width: 90%;
+  }
+
+  .sidebar {
+    width: 100%;
+    display: flex;     
+    align-items: center;     
+    flex-direction: column; 
+      margin-right: 0px;
+  }
+
+
   }
