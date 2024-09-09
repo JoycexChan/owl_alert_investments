@@ -29,9 +29,9 @@ const Carousel = () => {
     },
     {
       img: '/images/yellow.jpg',
-      title: '精選清單',
-      description: '發現潛力無限的轉機股，及早參與進取。',
-      link: '/stock-picking',
+      title: '大盤產業',
+      description: '掌握大盤產業趨勢，洞察市場脈動。深入分析經濟指標，為您的投資決策提供堅實的數據支持。',
+      link: '/MarketOverview',
       buttonname: 'Read More',
       hasSearch: false // 其他 slide 不需要搜尋框
     },
@@ -53,9 +53,9 @@ const Carousel = () => {
 
     {
       img: '/images/indigo.jpg',
-      title: '精選清單',
-      description: '發現潛力無限的轉機股，及早參與進取。',
-      link: '/stock-picking',
+      title: '大盤產業',
+      description: '掌握大盤產業趨勢，洞察市場脈動。深入分析經濟指標，為您的投資決策提供堅實的數據支持。',
+      link: '/MarketOverview',
       buttonname: 'Read More',
       hasSearch: false // 其他 slide 不需要搜尋框
     },

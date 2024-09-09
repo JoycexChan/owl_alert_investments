@@ -1,9 +1,9 @@
 .wrapperout{
-  
+
   width: 100vw;
   display: flex;         /* 啟用 flexbox */
   justify-content: center; /* 水平置中 */
-  background-color: rgb(228, 228, 228);
+  /* background-color: rgb(255, 255, 255); */
 }
 
 .wrapper{
@@ -23,16 +23,16 @@
 .background {
   position: absolute;
   top: 40px;
-  width: 100%;
-  padding: 54px 0 510px;
+  width: 100vw; /* 根據內容動態調整高度 */
+  padding: 54px 0 50vh;
   overflow: hidden;
-  background-color: #0386f4;
+
   background-image: linear-gradient(136deg, #0386f4 0%, #2fae90 90%);
   transform: skewY(-9deg);
   transform-origin: 0 50%;
   text-align: center;
   color: white;
-  height: 500px;
+
 }
 
 .backgroundtext{
@@ -85,6 +85,7 @@ gap: 10px;
   background-color: rgba(255, 255, 255, 0.918);
   z-index: 300;
   margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); 
 }
 
 .plot {
@@ -231,6 +232,8 @@ height: 40%;
 
 
   }
+
+
   }
 
 

@@ -13,7 +13,7 @@ const TaiwanStockNews = ({ stockCode }: TaiwanStockNewsProps) => {
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
     const [message, setMessage] = useState<string>('');
     const [currentPage, setCurrentPage] = useState(1);
-    const newsPerPage = 6;
+    const newsPerPage = 5;
 
     useEffect(() => {
         const fetchNews = async () => {
@@ -54,14 +54,17 @@ const TaiwanStockNews = ({ stockCode }: TaiwanStockNewsProps) => {
 
     return (
         <div className={styles.newsplot}>
-            <h1>台股相關新聞</h1>
+          <div className={styles.newsplottitle}>
+          <div><h1>台股相關新聞</h1></div>
             <div>
                 <label>選擇日期: </label>
                 <DatePicker
                     selected={selectedDate}
                     onChange={(date: Date | null) => setSelectedDate(date)}
                     dateFormat="yyyy-MM-dd"
+                    className={styles.datePickerClassname}
                 />
+            </div>
             </div>
             {message ? <p>{message}</p> : (
             <ul>

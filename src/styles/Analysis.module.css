@@ -1,9 +1,10 @@
 
 .wrapperout{
-  background-color: #ccc;
-    width: 100vw;
-    display: flex;         /* 啟用 flexbox */
-    justify-content: center; /* 水平置中 */
+  margin-top: 0px;
+  width: 100vw;
+  display: flex;         /* 啟用 flexbox */
+  justify-content: center; /* 水平置中 */
+
 
   }
   
@@ -24,6 +25,7 @@ margin-bottom: 10px;
   justify-content: center;    
   height:'80vh';
   max-width: 1000px;
+
 }
 
 
@@ -38,7 +40,7 @@ margin-bottom: 10px;
 
 .mainContent {
 
-  max-width: 1000px;
+  max-width: 700px;
   width: 80%;
 }
 
@@ -58,8 +60,9 @@ margin-bottom: 10px;
   background-color: white;
   padding: 10px;
   margin-top: 10px;
-  overflow-y: auto; /* 啟用水平滾動 */
 
+
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 
@@ -73,6 +76,7 @@ margin-bottom: 10px;
   overflow-y: auto; /* 啟用水平滾動 */
   text-align: left;
 font-size: small;
+box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
   .pageContainer {
@@ -218,11 +222,38 @@ border-radius: 0.25rem;
 background-color: white;
 padding: 10px;
 margin-top: 10px;
-height: 500px;
+min-height: 465.2px;
+overflow-y: visible; /* 允許內容超出時顯示 */
 }
 
+.newsplottitle {
+color: white;
+  display: flex; /* 啟用 Flexbox */
+  justify-content: space-between; /* 子元素分散對齊，一個在左一個在右 */
+  background-image: linear-gradient(136deg, #0388f4ee 60%, #2fae90bb 90%);
+  border-radius: 0.25rem;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  align-items: center;     /* 垂直置中 */
+}
+
+.newsplottitle label{
+font-size: small;
+}
+
+.datePickerClassname {
+  border: 1px solid #ccc; /* 邊框 */
+  padding: 8px; /* 內邊距 */
+  border-radius: 4px; /* 圓角 */
+
+  font-size: small;
+
+}
+
+
 .newsplot {
-padding: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   line-height: 30px;
   width: 100%;
   border-radius: 0.25rem;
@@ -230,12 +261,24 @@ padding: 10px;
 
 text-align: left;
 font-size: 0.65rem;
+padding-bottom: 10px;
+min-height: 445.2px;
+
+
+
   }
+
+  .newsplot ul{
+padding: 10px;
+    }
 
   .newsbutton  {
     text-align: center;
 
     margin-top: 10px;
+
+
+ 
         }
 
   .newsbutton  button{
@@ -258,6 +301,13 @@ padding: 5px;
   }
     
 
+  .newsItem{
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    border-bottom: 2px solid gray;
+    border-radius: 0.25rem;
+  }
 
   @media (max-width: 800px) {
 
@@ -284,5 +334,8 @@ padding: 5px;
       margin-right: 0px;
   }
 
+  .plotContainer{
+    overflow-y: auto ; /* 啟用水平滾動 */
+  }
 
   }

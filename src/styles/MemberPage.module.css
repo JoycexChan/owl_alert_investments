@@ -1,8 +1,10 @@
  /* styles/MemberPage.module.css */
  .wrapperout{
 
+  width: 100vw;
   display: flex;         /* 啟用 flexbox */
   justify-content: center; /* 水平置中 */
+
 }
 
 .wrapper{
@@ -15,6 +17,7 @@
   text-align: center;      /* 文本居中對齊 */
   width: 100vw;
   max-width: 800px;
+  
 
 }
 
@@ -33,20 +36,20 @@ margin-top: 100px;
   border-radius: 0.25rem;
   padding: 20px 20px 5px 20px;
 
-  background-color: aliceblue;
+  /* background-color: rgba(188, 224, 255, 0.4); */
   text-align: center;
 
-
+background-color: white;
 
   max-width: 800px;
   margin-bottom: 50px;
-
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); 
 }
 
 .titleContainer {
   width: 100%;
   padding: 20px;
-  background: linear-gradient(230deg, #0386F4 63%, #2AA99E 14%);
+  background-image: linear-gradient(136deg, #0388f4ee 60%, #2fae90bb 90%);
   border-radius: 10px;
   text-align: center;
   color: white;

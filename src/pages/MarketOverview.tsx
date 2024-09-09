@@ -10,6 +10,7 @@ const TaiwanStockIndicesChart = dynamic(() => import('../components/TaiwanStockT
 
 const MarketOverview: React.FC = () => {
     return (
+      <main>
       <div className={styles.wrapperout}>
         <div className={styles.wrapper}>  
         <div className={styles.background} >  
@@ -64,6 +65,7 @@ const MarketOverview: React.FC = () => {
       </div>
       </div>
       </div>
+      </main>
     );
   };
   

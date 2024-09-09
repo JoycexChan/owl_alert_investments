@@ -1,7 +1,6 @@
 // pages/stock-analysis.tsx
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-
 import Sidebar from '../components/Sidebar';
 import StockSummary from '../components/StockSummary';
 import dynamic from 'next/dynamic';
@@ -26,6 +25,7 @@ const StockAnalysis = () => {
   
 
   return (
+    <main>
     <div className={styles.wrapperout}>
     <div className={styles.wrapper}>  
         <div className={styles.flexContainer} >
@@ -101,7 +101,7 @@ const StockAnalysis = () => {
         </div>
 
         </div>
- 
+        </main>
   );
 };
 
