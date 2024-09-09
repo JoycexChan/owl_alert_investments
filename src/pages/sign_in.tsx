@@ -91,8 +91,7 @@ const RegisterPage = () => {
     };
 
     return (
-        <div>
-            <Navbar />
+        <main>
             <div className={styles.loginwrapperout}>
             <div className={styles.loginwrapper}>
 
@@ -177,7 +176,7 @@ const RegisterPage = () => {
                 )}
             </div>
             </div>
-            </div>
+            </main>
     );
 };
 

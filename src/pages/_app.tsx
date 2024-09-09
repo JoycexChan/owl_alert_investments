@@ -5,13 +5,13 @@
 import { AppProps } from 'next/app';
 import { useEffect } from 'react';
 import { AuthProvider } from '../context/AuthContext';
-import '../app/globals.css';
 import { getToken } from 'firebase/messaging';
-import { messaging } from '../firebase'; // 引入已經初始化的 messaging
-
+import { messaging } from '../firebase'; 
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CustomHead from '../components/CustomHead';
+import '../app/globals.css';
+import styles from '../styles/Carousel.module.css';
 //MyApp 是整個應用的根組件，每次頁面加載時都會渲染它。它接收 Component 和 pageProps 作為參數，Component 代表當前加載的頁面，pageProps 是該頁面的初始屬性。
 function MyApp({ Component, pageProps }: AppProps) {
     useEffect(() => {
@@ -66,10 +66,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
 
         <AuthProvider>
+        
             <CustomHead/>
              <Navbar />
             <Component {...pageProps} />
              <Footer />
+
         </AuthProvider>
     );
 }

@@ -1,8 +1,10 @@
  /* styles/MemberPage.module.css */
  .wrapperout{
 
+  width: 100vw;
   display: flex;         /* 啟用 flexbox */
   justify-content: center; /* 水平置中 */
+
 }
 
 .wrapper{
@@ -15,12 +17,14 @@
   text-align: center;      /* 文本居中對齊 */
   width: 100vw;
   max-width: 800px;
+  
 
 }
 
 
 
 .pageContainer {
+
   margin: 10px;
 margin-top: 100px;
 
@@ -32,21 +36,21 @@ margin-top: 100px;
   width: 90vw;
   border-radius: 0.25rem;
   padding: 20px 20px 5px 20px;
-
-  background-color: aliceblue;
   text-align: center;
-
-
+  background-color: white;
 
   max-width: 800px;
   margin-bottom: 50px;
-
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); 
+  overflow-x: hidden;   ; /* 啟用水平滾動 */
+  overflow-y: auto;
+  max-height: 500px;
 }
 
 .titleContainer {
   width: 100%;
   padding: 20px;
-  background: linear-gradient(230deg, #0386F4 63%, #2AA99E 14%);
+  background-image: linear-gradient(136deg, #0388f4ee 60%, #2fae90bb 90%);
   border-radius: 10px;
   text-align: center;
   color: white;
@@ -107,7 +111,19 @@ border-radius:  0.25rem;
 }
 
 
+.noStocksMessage{
 
+  gap: 10px;
+  width: 100%;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 2px solid #000000;
+  /* border-bottom: 2px solid #0386F4; */
+  /* border-left: 2px solid rgb(180, 180, 180);
+  border-right: 2px solid rgb(180, 180, 180); */
+  border-radius: 5px;
+  border-radius:   0 0 0.25rem 0.25rem;
+}
 .inputContainer {
 
   display: flex;
@@ -137,4 +153,14 @@ border-radius:  0.25rem;
   border-radius: 0.25rem;
   color: #ffffff;
   background-color: #2AA99E;
+}
+
+
+
+/* 媒體查詢針對螢幕寬度小於800px的情況 */
+@media (max-width: 800px) {
+  .pageContainer {
+    max-height: none;  /* 移除最大高度限制 */
+    overflow-y: visible; /* 垂直滾動條不顯示 */
+  }
 }

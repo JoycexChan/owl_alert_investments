@@ -116,6 +116,7 @@ export default function MemberPage() {
   if (loading) return <div>Loading...</div>;
 
   return (
+    <main>
     <div className={styles.wrapperout}>
     <div className={styles.wrappero}>
     <div className={styles.pageContainer}>
@@ -173,5 +174,6 @@ export default function MemberPage() {
     </div>
     </div>
     </div>
+    </main>
   );
 }

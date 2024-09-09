@@ -5,7 +5,8 @@ border-radius: 0.25rem;
 
     height: 100%;
     max-width: 100px;
-
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    background-image: linear-gradient(136deg, #0388f4ee 60%, #2fae90bb 90%);
 }
 
 .contentArea {
@@ -13,12 +14,14 @@ border-radius: 0.25rem;
 
     padding: 10px; /* 給內容區域加一些內邊距 */
     height: 60vh;
-
+border-radius: 0.25rem;
 
 display: flex;             /* Enables flexbox */
 flex-direction: column;      /* Aligns children horizontally */
 justify-content: space-around; /* Distributes space evenly around items */
 align-items: center;      /* Vertically centers items if needed */
+color: white;
+font-weight: 800;
 }
 
     
