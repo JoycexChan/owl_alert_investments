@@ -14,7 +14,6 @@
 ## 使用技術
 - 前端框架：React、Styled-components
 - 即時數據與通知：Firebase (Firestore、Firebase Cloud Messaging)
-- ![image](https://github.com/user-attachments/assets/86a33fb3-8c4b-45c8-b3e8-b46f3f945d35)
 - API 整合：FinMind、YahooFinance2 APIs
 - 部署與 CI/CD：Vercel
 - 通知功能：Firebase Cloud Messaging (FCM)
