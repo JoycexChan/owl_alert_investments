@@ -7,12 +7,14 @@
 ## 功能亮點
 - 即時數據處理：使用 Firebase 及外部 API 實現股票數據的即時更新和市場趨勢顯示。
 - 股票警報通知：通過 Firebase Cloud Messaging (FCM) 實現每日自動觸發的股票價格警報，用戶可自定義警報門檻。
+- 
 - 互動式股票儀表板：用戶可獲取個股資訊，並通過點擊來查看相關趨勢圖表與新聞。
 - 響應式設計：確保網站在桌面和移動設備上的最佳體驗。
 
 ## 使用技術
 - 前端框架：React、Styled-components
 - 即時數據與通知：Firebase (Firestore、Firebase Cloud Messaging)
+- ![image](https://github.com/user-attachments/assets/86a33fb3-8c4b-45c8-b3e8-b46f3f945d35)
 - API 整合：FinMind、YahooFinance2 APIs
 - 部署與 CI/CD：Vercel
 - 通知功能：Firebase Cloud Messaging (FCM)
