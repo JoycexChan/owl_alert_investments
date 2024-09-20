@@ -16,7 +16,7 @@ export default async function handler(req, res) {
         const response = await fetch(`https://owl-alert-investments.vercel.app/api/stockPrice?symbol=${encodeURIComponent(stockCode)}`);
         const data = await response.json();
 
-        if (data.price < alertPrice) { // 如果當前價格超過設定的提醒價格
+        if (data.price < alertPrice) { // 如果當前價格低於設定的提醒價格
           userIdsToNotify.add(userId); // 添加 userId 到通知集合
           await updateDoc(doc(db, "stocks", stock.id), {
             currentPrice: data.price,

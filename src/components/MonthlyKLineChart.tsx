@@ -3,6 +3,8 @@ import Plot from 'react-plotly.js';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import styles from '../styles/Analysis.module.css';
+
+
 function getLastHalfYearRange() {
   const endDate = dayjs().format('YYYY-MM-DD');
   const startDate = dayjs().subtract(6, 'month').format('YYYY-MM-DD');
@@ -15,7 +17,7 @@ async function fetchWeeklyData(stockCode: string) {
   try {
     const response = await axios.get('https://api.finmindtrade.com/api/v4/data', {
       params: {
-        dataset: 'TaiwanStockWeekPrice',
+        dataset: 'TaiwanStockPrice',
         data_id: stockCode,
         start_date: startDate,
         end_date: endDate,

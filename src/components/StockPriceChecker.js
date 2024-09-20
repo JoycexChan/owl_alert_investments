@@ -27,7 +27,7 @@ export default function StockPriceChecker({ symbol, alertPrice }) {
     if (price < alertPrice) {
       return 'red'; 
     } else if (price > alertPrice) {
-      return 'green'; 
+      return 'black'; 
     }
     return 'black'; 
   }
