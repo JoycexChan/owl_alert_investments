@@ -11,7 +11,7 @@
 -響應式設計：確保網站在桌面和移動設備上的最佳體驗。
 
 ## 使用技術
--前端框架：React、Styled-components
+- 前端框架：React、Styled-components
 -即時數據與通知：Firebase (Firestore、Firebase Cloud Messaging)
 -API 整合：FinMind、YahooFinance2 APIs
 -部署與 CI/CD：Vercel
