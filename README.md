@@ -29,8 +29,8 @@
 ## 本地運行步驟
 1. 克隆倉庫：
 ```bash
-git clone https://github.com/your-username/stock-website.git
-cd stock-website
+git clone https://github.com/JoycexChan/owl_alert_investments.git
+cd owl_alert_investments
 ```
 
 2. 安裝依賴：
@@ -39,9 +39,9 @@ npm install
 ```
 
 3. 配置 Firebase：
--創建 Firebase 專案，啟用 Firestore 和 Firebase Cloud Messaging。
--在 src/firebase.ts 中填寫 Firebase 配置。
--在 .env.local 中設置 API 密鑰及其他環境變量。
+- 創建 Firebase 專案，啟用 Firestore 和 Firebase Cloud Messaging。
+- 在 src/firebase.ts 中填寫 Firebase 配置。
+- 在 .env.local 中設置 API 密鑰及其他環境變量。
 
 4. 啟動開發伺服器：
 ```bash
