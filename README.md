@@ -70,5 +70,78 @@ vercel
 這個項目展示了對 React 和 Firebase 等現代前端技術的熟練應用，並體現了在處理實時數據和用戶交互方面的能力。
 
 
-################
+-------------
+
+## Owl Alert Investments
+
+## Introduction
+
+This project demonstrates skills in frontend development, including handling real-time stock data and user-customized alert features. The frontend is built using React and Firebase, with real-time stock information provided by the FinMind and YahooFinance2 APIs. This project focuses on responsive design, real-time notifications, and seamless integration with backend APIs.
+
+## Key Features
+- Real-time Data Processing: Uses Firebase and external APIs to enable real-time stock data updates and market trends display.
+- Stock Alert Notifications: Implements daily stock price alerts via Firebase Cloud Messaging (FCM), allowing users to set custom alert thresholds.
+- Interactive Stock Dashboard: Users can access individual stock information and click to view related trend charts and news.
+- Responsive Design: Ensures optimal user experience on both desktop and mobile devices.
+  
+## Technologies Used
+- Frontend Framework: React, Styled-components
+- Real-time Data and Notifications: Firebase (Firestore, Firebase Cloud Messaging)
+- API Integration: FinMind, YahooFinance2 APIs
+- Deployment and CI/CD: Vercel
+- Notification Feature: Firebase Cloud Messaging (FCM)
+
+## Project Demo
+You can view the full website by clicking the link below：
+[Project Link](https://owl-alert-investments.vercel.app/)
+
+## Installation Guide
+## Prerequisites
+- Node.js (version 14.x or higher)
+- Firebase account for Firestore and Cloud Messaging setup
+
+## Local Setup Steps
+1. Clone the repository:
+```bash
+git clone https://github.com/JoycexChan/owl_alert_investments.git
+cd owl_alert_investments
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Configure Firebase:
+- Create a Firebase project, enable Firestore and Firebase Cloud Messaging.
+- Fill in the Firebase configuration in src/firebase.ts.
+- Set API keys and other environment variables in .env.local.
+
+4. Start the development server:
+```bash
+npm run dev
+```
+
+5. Build for production:
+```bash
+npm run build
+```
+
+## Deployment Guide
+The project is deployed on Vercel. If you want to deploy your own version, follow these steps:
+
+1. Install the Vercel CLI:
+```bash
+npm install -g vercel
+```
+
+2. Deploy:
+```bash
+vercel
+```
+
+## Project Value
+This project demonstrates proficiency in modern frontend technologies like React and Firebase and showcases the ability to handle real-time data and user interactions.
+
+
 
